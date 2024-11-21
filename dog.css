@@ -80,6 +80,20 @@ ul.scrollingText li {
   width: 100%;
 }
 
+.statsContainer {
+  width: 100%;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+progress {
+  width: 100%;
+}
+
 @media (min-width: 600px) {
 
   body {

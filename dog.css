@@ -42,10 +42,42 @@ div.dashboard {
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-div.dashboard>div {
-  max-width: 50%;
+.imageContainer {
+  background-color: lightgray;
+  width: 100%;
+  height: 200px;
+}
+
+.imageContainer img {
+  text-align: start;
+}
+
+ul.scrollingText {
+  display: flex;
+  gap: 5px;
+  list-style-type: none;
+}
+
+ul.scrollingText li {
+  font-size: 25px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.scrollingTextContainer {
+  overflow: hidden;
+}
+
+.infoContainer table {
+  text-align: left;
+  width: 66%;
+}
+
+.infoContainer table:last-child {
+  width: 100%;
 }
 
 @media (min-width: 600px) {
@@ -67,6 +99,11 @@ div.dashboard>div {
   /* DASHBOARD */
   div.dashboard {
     flex-direction: row;
+    gap: 5%;
+  }
+
+  .breedSummary {
+    max-width: 60%;
   }
 
 }

@@ -6,6 +6,13 @@
 
 body {
   margin: 0 5%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 /* HEADER */
@@ -45,10 +52,22 @@ div.dashboard {
   gap: 10px;
 }
 
+.breedSummary {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.graphicsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .imageContainer {
   background-color: lightgray;
   width: 100%;
-  height: 200px;
+  height: 100%;
 }
 
 .imageContainer img {
@@ -71,12 +90,14 @@ ul.scrollingText li {
   overflow: hidden;
 }
 
-.infoContainer table {
-  text-align: left;
-  width: 66%;
+.infoContainer {
+  width: 100%;
+  display: flex;
 }
 
-.infoContainer table:last-child {
+.infoContainer table {
+  text-align: left;
+  max-width: 100%;
   width: 100%;
 }
 
@@ -114,10 +135,20 @@ progress {
   div.dashboard {
     flex-direction: row;
     gap: 5%;
+    height: auto;
   }
 
   .breedSummary {
     max-width: 60%;
+  }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .infoContainer table {
+    max-width: 50%;
   }
 
 }

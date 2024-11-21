@@ -1,0 +1,26 @@
+# Ignore generated files
+*.min.js
+*.min.css
+*.map
+*.md5
+*.gz
+*.br 
+
+# Ignore build directories
+build/
+dist/
+public/ 
+
+# Ignore temporary files
+*.swp
+*.tmp
+*.log 
+
+# Ignore editor/IDE settings
+.DS_Store
+.idea/
+.vscode/
+*.suo 
+
+# Ignore browser cache
+*.cache

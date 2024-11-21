@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 5%;
+}
+
+/* HEADER */
+header {
+  height: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+header img.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav {
+  position: relative;
+  top: 50%;
+}
+
+nav ul.links {
+  display: none;
+
+}
+
+ul.links>li {
+  list-style-type: none;
+}
+
+
+@media (min-width: 600px) {
+
+  body {
+    margin: 0 10%;
+  }
+
+  nav ul.links {
+    display: flex;
+    gap: 5px;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+}

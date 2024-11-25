@@ -1,23 +1,36 @@
+:root {
+  --dog-yellow: #FFF700;
+  --dog-blue: #87ceeb;
+  --dog-green: #98fb98;
+  --dog-orange: #FF7F50;
+  --dog-white: white;
+  --dog-grey: grey;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
   margin: 0 5%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: var(--dog-blue);
 }
 
 main {
-  flex: 1;
+  height: calc(100vh - 200px);
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 /* HEADER */
 header {
-  height: 50px;
+  height: 100px;
   position: relative;
   display: flex;
   flex-direction: row-reverse;
@@ -45,29 +58,30 @@ ul.links>li {
 
 /* DASHBOARD */
 div.dashboard {
-  width: 100%;
+  background: var(--dog-white);
+  padding: 20px 20px 0 20px;
+  border-radius: 15px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-.breedSummary {
-  display: flex;
-  flex-direction: column;
+div.dashboard>div {
   flex: 1;
 }
 
-.graphicsContainer {
-  flex: 1;
+.fillContainer {
   display: flex;
   flex-direction: column;
+}
+
+.fillContainer:first-child {
+  flex: 1;
 }
 
 .imageContainer {
   background-color: lightgray;
   width: 100%;
-  height: 100%;
 }
 
 .imageContainer img {
@@ -103,6 +117,25 @@ ul.scrollingText li {
 
 .statsContainer {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  position: relative;
+  column-gap: 40px;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  padding-top: 15px;
+}
+
+.stat {
+  flex-basis: 13%;
+}
+
+.stat p {
+  font-weight: 200;
+  margin-bottom: 3px;
 }
 
 .progressContainer {
@@ -111,8 +144,31 @@ ul.scrollingText li {
   gap: 5px;
 }
 
+progress::-webkit-progress-inner-element {
+  margin: 0;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 25px;
+  height: 8px;
+  background-color: var(--dog-grey);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 25px;
+  background-color: var(--dog-blue);
+  margin: 0;
+}
+
 progress {
   width: 100%;
+  appearance: none;
+  display: block;
+
+}
+
+footer {
+  height: 100px;
 }
 
 @media (min-width: 600px) {
@@ -132,16 +188,6 @@ progress {
   }
 
   /* DASHBOARD */
-  div.dashboard {
-    flex-direction: row;
-    gap: 5%;
-    height: auto;
-  }
-
-  .breedSummary {
-    max-width: 60%;
-  }
-
   .infoContainer {
     display: flex;
     flex-direction: row;
@@ -150,5 +196,16 @@ progress {
   .infoContainer table {
     max-width: 50%;
   }
+
+  .breedSummary {
+    margin-bottom: 0px;
+  }
+
+  .statsContainer {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+
 
 }

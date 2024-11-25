@@ -24,3 +24,6 @@ public/
 
 # Ignore browser cache
 *.cache
+
+# Custom
+todo/

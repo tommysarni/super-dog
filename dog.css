@@ -90,18 +90,39 @@ div.dashboard>div {
 
 ul.scrollingText {
   display: flex;
-  gap: 5px;
   list-style-type: none;
+  width: max-content;
+  animation: marquee 7s ease-in-out infinite;
+
+}
+
+ul.scrollingText:hover {
+  animation-play-state: paused;
 }
 
 ul.scrollingText li {
+  padding: 5px;
   font-size: 25px;
   font-family: sans-serif;
   text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .scrollingTextContainer {
   overflow: hidden;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .infoContainer {

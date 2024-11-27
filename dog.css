@@ -108,6 +108,11 @@ ul.scrollingText li {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  color: var(--dog-blue);
+}
+
+ul.scrollingText li:nth-child(odd of .first, .second, .third) {
+  color: var(--dog-orange);
 }
 
 .scrollingTextContainer {
@@ -216,6 +221,11 @@ footer {
 
   .infoContainer table {
     max-width: 50%;
+  }
+
+  ul.scrollingText li {
+    letter-spacing: 5px;
+    font-weight: bold;
   }
 
   .breedSummary {

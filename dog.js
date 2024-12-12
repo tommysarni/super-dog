@@ -41,10 +41,44 @@ function Dog(id) {
     }
   };
 
+  this.getBreedData = async () => {
+
+    const cachedData = sessionStorage.getItem(this.id);
+    if (cachedData) return JSON.parse(cachedData);
+
+    const token = await this.getToken();
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", `Bearer ${token}`);
+
+    const body = JSON.stringify({
+      path: `v1/breeds/${this.id}`,
+      method: "GET"
+    });
+
+    const requestOptions = {
+      method: "POST",
+      redirect: "follow",
+      headers,
+      body,
+    };
+
+    try {
+      const response = await fetch("https://doggo-api-inky.vercel.app/api/v1/proxy", requestOptions);
+      const json = await response.json();
+      if (json) {
+        sessionStorage.setItem(this.id, JSON.stringify(json));
+      }
+      return json;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const init = async () => {
     if (this.id) {
-      const token = await this.getToken();
-      console.log('TOKEN:', token);
+      const breedData = await this.getBreedData();
+      console.log('BREED DATA:', breedData);
     }
   };
 

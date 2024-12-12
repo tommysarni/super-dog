@@ -3,7 +3,7 @@
   --dog-blue: #87ceeb;
   --dog-green: #98fb98;
   --dog-orange: #FF7F50;
-  --dog-white: white;
+  --dog-white: #ffffff;
   --dog-grey: grey;
 }
 
@@ -89,6 +89,35 @@ div.dashboard>div {
   text-align: start;
   max-height: 30vh;
   object-fit: cover;
+}
+
+.attributionContainer {
+  padding-top: 0.5%;
+  height: 5%;
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+  gap: 5px;
+  position: relative;
+  bottom: 13px;
+  background: var(--dog-white);
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.attributionContainer a {
+  width: 15px;
+  text-decoration: none;
+}
+
+.attributionContainer a,
+.attributionContainer p {
+  color: var(--dog-grey);
+}
+
+.attributionContainer img {
+  height: 95%;
+  width: 95%;
 }
 
 ul.scrollingText {

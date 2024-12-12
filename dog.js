@@ -181,6 +181,18 @@ function Dog(id) {
         imgEl.style.objectPosition = pos;
       }
 
+      if (author || ccLink || loc) {
+        const authorEl = document.getElementById('author');
+        if (author && authorEl) authorEl.textContent = author;
+        const ccLinkEl = document.getElementById('ccLink');
+        if (ccLink && ccLinkEl) ccLinkEl.href = ccLink;
+        const locEl = document.getElementById('loc');
+        if (loc && locEl) locEl.href = loc;
+      } else {
+        const attributionEl = document.querySelector('.attributionContainer');
+        if (attributionEl) attributionEl.style.display = 'none';
+      }
+
     } catch (error) {
       console.error('Error fetching image metadata:', error);
     }

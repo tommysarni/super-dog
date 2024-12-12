@@ -154,10 +154,44 @@ function Dog(id) {
 
   };
 
+  this.updateImagePosition = async () => {
+    const URL = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
+    try {
+      const response = await fetch(URL, {
+        method: 'HEAD',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          Origin: window.location.origin,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error while fetching image metadata! Status: ${response.status}`);
+      }
+
+      const pos = response.headers.get('x-amz-meta-pos');
+      const author = response.headers.get('x-amz-meta-author');
+      const ccLink = response.headers.get('x-amz-meta-ccLink');
+      const loc = response.headers.get('x-amz-meta-loc');
+
+      const imgEl = document.querySelector('.imageContainer img');
+      if (imgEl && pos !== undefined) {
+        imgEl.style.objectPosition = pos;
+      }
+
+    } catch (error) {
+      console.error('Error fetching image metadata:', error);
+    }
+
+  };
+
   const init = async () => {
     if (this.id) {
       const breedData = await this.getBreedData();
       this.hydrateData(breedData);
+      this.updateImagePosition();
     }
   };
 

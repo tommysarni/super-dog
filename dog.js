@@ -75,10 +75,89 @@ function Dog(id) {
     }
   };
 
+  this.hydrateData = (data) => {
+
+    // TITLE
+    const titleEl = document.querySelector('h1');
+    if (titleEl) {
+      titleEl.textContent = data.breed || '';
+      document.title = data.breed || 'Super Dog';
+    }
+
+    // IMAGE
+    const imgEl = document.querySelector('.imageContainer img');
+    if (imgEl) {
+      imgEl.src = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
+      imgEl.alt = data.breed;
+    }
+
+    // SCROLLING TEXT
+    const scrollingListEl = document.querySelector('.scrollingTextContainer .scrollingText');
+    if (scrollingListEl) {
+      scrollingListEl.replaceChildren();
+      if (data.temperament) {
+        let words = data.temperament.split('|').filter(s => s);
+        const wordLength = words.length;
+        if (words.length) {
+          while (words.length < 18) {
+            words = [...words, ...words.slice(0, wordLength)];
+          }
+        }
+        words.forEach((w, idx) => {
+          const li = document.createElement('li');
+          const cn = (['first', 'second', 'third', 'fourth', 'fifth'])[Math.floor(idx / wordLength)];
+          li.classList.add(cn);
+          li.textContent = w;
+          scrollingListEl.appendChild(li);
+        });
+      }
+    }
+
+    // INFO TABLE
+    const groupEl = document.getElementById('group');
+    if (groupEl) groupEl.textContent = data.group;
+    const originEl = document.getElementById('origin');
+    if (originEl) originEl.textContent = data.origin;
+    const originDateEl = document.getElementById('dateOfOrigin');
+    if (originDateEl) originDateEl.textContent = data.originDate;
+
+    // WEIGHT TABLE
+    const maleHeightEl = document.getElementById('maleHeight');
+    if (maleHeightEl) maleHeightEl.textContent = data.maleHeightInInches;
+    const femaleHeightEl = document.getElementById('femaleHeight');
+    if (femaleHeightEl) femaleHeightEl.textContent = data.femaleHeightInInches;
+    const maleWeightEl = document.getElementById('maleWeight');
+    if (maleWeightEl) maleWeightEl.textContent = data.maleWeightInLbs;
+    const femaleWeightEl = document.getElementById('femaleWeight');
+    if (femaleWeightEl) femaleWeightEl.textContent = data.femaleWeightInLbs;
+
+    const createAndAddProgress = (locationEl, val) => {
+      if (!locationEl || val === undefined) return;
+      locationEl.replaceChildren();
+      for (let i = 0; i < 5; i++) {
+        const progress = document.createElement('progress');
+        progress.max = 1;
+        progress.value = val - 1 < 0 ? val.toFixed(1) : 1;
+        val -= progress.value;
+        progress.classList.add('segment');
+        locationEl.appendChild(progress);
+      }
+    };
+
+    const progressIds = ['goodWithChildren', 'energy', 'excercise', 'playfullness', 'affection', 'dogFriendliness', 'petFriendliness', 'strangerFriendliness', 'trainingEase', 'watchdog', 'protection', 'grooming', 'coldTolerance', 'heatTolerance'];
+
+    progressIds.forEach(id => {
+      const el = document.getElementById(id);
+      const val = data[id];
+      if (el && val !== undefined) createAndAddProgress(el, val);
+    });
+
+  };
+
   const init = async () => {
     if (this.id) {
       const breedData = await this.getBreedData();
-      console.log('BREED DATA:', breedData);
+      this.hydrateData(breedData);
     }
   };
 

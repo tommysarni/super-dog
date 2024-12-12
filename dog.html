@@ -27,9 +27,7 @@
       <div class="breedSummary fillContainer">
         <div class="graphicsContainer fillContainer">
           <div class="imageContainer fillContainer">
-            <img class=""
-              src="https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/chesapeake-bay-retriever.jpg"
-              alt="Chesapeake Bay Retriever" />
+            <img class="" src="" alt="" />
           </div>
           <div class="scrollingTextContainer">
             <ul class="scrollingText">
@@ -59,21 +57,19 @@
             <tbody>
               <tr>
                 <th scope="row">Group</th>
-                <td>Sporting</td>
+                <td id="group">Sporting</td>
               </tr>
               <tr>
                 <th scope="row">Origin</th>
-                <td>USA</td>
+                <td id="origin">USA</td>
               </tr>
               <tr>
                 <th scope="row">Date of Origin</th>
-                <td>1800s</td>
+                <td id="dateOfOrigin">1800s</td>
               </tr>
             </tbody>
           </table>
-
           <table>
-
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -85,15 +81,15 @@
             <tbody>
               <tr>
                 <th scope="row">Height</th>
-                <td>23-26</td>
-                <td>21-24</td>
-                <td>in</td>
+                <td id="maleHeight">23-26</td>
+                <td id="femaleHeight">21-24</td>
+                <td id="heightUnit">in</td>
               </tr>
               <tr>
                 <th scope="row">Weight</th>
-                <td>65-80</td>
-                <td>55-70</td>
-                <td>lbs</td>
+                <td id="maleWeight">65-80</td>
+                <td id="femaleWeight">55-70</td>
+                <td id="weightUnit">lbs</td>
               </tr>
             </tbody>
 
@@ -104,7 +100,7 @@
       <div class="statsContainer">
         <div class="stat">
           <p>Good with Children</p>
-          <div class="progressContainer">
+          <div id="goodWithChildren" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -114,7 +110,7 @@
         </div>
         <div class="stat">
           <p>Energy</p>
-          <div class="progressContainer">
+          <div id="energy" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -124,7 +120,7 @@
         </div>
         <div class="stat">
           <p>Exercise</p>
-          <div class="progressContainer">
+          <div id="exercise" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -134,7 +130,7 @@
         </div>
         <div class="stat">
           <p>Playfullness</p>
-          <div class="progressContainer">
+          <div id="playfullness" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -144,7 +140,7 @@
         </div>
         <div class="stat">
           <p>Affection</p>
-          <div class="progressContainer">
+          <div id="affection" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -154,7 +150,7 @@
         </div>
         <div class="stat">
           <p>Friendly toward Dogs</p>
-          <div class="progressContainer">
+          <div id="dogFriendliness" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -164,7 +160,7 @@
         </div>
         <div class="stat">
           <p>Friendly toward Pets</p>
-          <div class="progressContainer">
+          <div id="petFriendliness" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -174,7 +170,7 @@
         </div>
         <div class="stat">
           <p>Friendly Toward Strangers</p>
-          <div class="progressContainer">
+          <div id="strangerFriendliness" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="0" max="1"></progress>
@@ -184,7 +180,7 @@
         </div>
         <div class="stat">
           <p>Ease of Training</p>
-          <div class="progressContainer">
+          <div id="trainingEase" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -194,7 +190,7 @@
         </div>
         <div class="stat">
           <p>Watchdog Ability</p>
-          <div class="progressContainer">
+          <div id="watchdog" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -204,7 +200,7 @@
         </div>
         <div class="stat">
           <p>Protection Ability</p>
-          <div class="progressContainer">
+          <div id="protection" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -214,7 +210,7 @@
         </div>
         <div class="stat">
           <p>Grooming Requirements</p>
-          <div class="progressContainer">
+          <div id="grooming" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="0" max="1"></progress>
@@ -224,7 +220,7 @@
         </div>
         <div class="stat">
           <p>Cold Tolerance</p>
-          <div class="progressContainer">
+          <div id="coldTolerance" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
@@ -234,7 +230,7 @@
         </div>
         <div class="stat">
           <p>Heat Tolerance</p>
-          <div class="progressContainer">
+          <div id="heatTolerance" class="progressContainer">
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>
             <progress class="segment" value="1" max="1"></progress>

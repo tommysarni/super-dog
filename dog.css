@@ -25,7 +25,8 @@ main {
 }
 
 h1 {
-  margin-bottom: 20px;
+  z-index: 5;
+  font-size: 25px;
 }
 
 /* HEADER */
@@ -62,33 +63,30 @@ div.dashboard {
   padding: 20px 20px 0 20px;
   border-radius: 15px;
   height: 85vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 50px minmax(0, 2fr) minmax(0, 1fr);
 }
 
-div.dashboard>div {
-  flex: 1;
-}
-
-.fillContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.fillContainer:first-child {
-  flex: 1;
+.graphicsContainer {
+  display: grid;
+  height: 100%;
 }
 
 .imageContainer {
-  background-color: lightgray;
+  display: grid;
   width: 100%;
-  max-height: 30vh;
+  border-radius: 5px;
 }
 
 .imageContainer img {
   text-align: start;
-  max-height: 30vh;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
   object-fit: cover;
+  z-index: 2;
+  border-radius: inherit;
+  transition: transform linear 500ms;
 }
 
 .attributionContainer {
@@ -98,8 +96,6 @@ div.dashboard>div {
   font-size: 12px;
   display: flex;
   gap: 5px;
-  position: relative;
-  bottom: 13px;
   background: var(--dog-white);
   justify-content: flex-end;
   align-items: flex-start;
@@ -163,8 +159,8 @@ ul.scrollingText li:nth-child(odd of .first, .second, .third, .fourth, .fifth) {
 }
 
 .infoContainer {
-  width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2r 1fr 1fr;
 }
 
 .infoContainer table {
@@ -175,16 +171,11 @@ ul.scrollingText li:nth-child(odd of .first, .second, .third, .fourth, .fifth) {
 
 .statsContainer {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 5px;
+  display: grid;
   position: relative;
   column-gap: 40px;
-  flex-wrap: nowrap;
   overflow-y: scroll;
-  padding-top: 15px;
+  margin-top: 15px;
 }
 
 .stat {
@@ -246,13 +237,29 @@ footer {
   }
 
   /* DASHBOARD */
-  .infoContainer {
-    display: flex;
-    flex-direction: row;
+  div.dashboard {
+    grid-template-rows: 50px minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  .infoContainer table {
-    max-width: 50%;
+  .graphicsContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(100px, 1fr) minmax(10px, 30px);
+    column-gap: 40px;
+  }
+
+  .imageContainer img {
+    max-height: 400px;
+    height: 100%;
+  }
+
+  .infoContainer {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .scrollingTextContainer {
+    grid-column: span 2;
   }
 
   ul.scrollingText li {
@@ -260,15 +267,9 @@ footer {
     font-weight: bold;
   }
 
-  .breedSummary {
-    margin-bottom: 0px;
-  }
-
   .statsContainer {
-    justify-content: center;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr;
     overflow-y: auto;
   }
-
 
 }

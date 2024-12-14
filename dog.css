@@ -21,7 +21,7 @@ body {
 }
 
 main {
-  height: calc(100vh - 200px);
+  height: 95vh;
 }
 
 h1 {
@@ -62,7 +62,7 @@ div.dashboard {
   background: var(--dog-white);
   padding: 20px 20px 0 20px;
   border-radius: 15px;
-  height: 85vh;
+  height: inherit;
   display: grid;
   grid-template-rows: 50px minmax(0, 2fr) minmax(0, 1fr);
 }
@@ -192,6 +192,8 @@ thead th {
   column-gap: 40px;
   overflow-y: scroll;
   margin-top: 15px;
+  margin-bottom: 10px;
+  padding-right: 10px;
 }
 
 .stat {
@@ -207,6 +209,7 @@ thead th {
   display: flex;
   flex-direction: row;
   gap: 5px;
+  margin: 5px 0;
 }
 
 progress::-webkit-progress-inner-element {
@@ -286,6 +289,11 @@ footer {
   .statsContainer {
     grid-template-columns: 1fr 1fr;
     overflow-y: auto;
+    padding-right: 0;
+  }
+
+  .stat p {
+    margin: 0;
   }
 
 }

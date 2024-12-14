@@ -68,8 +68,10 @@ div.dashboard {
 }
 
 .graphicsContainer {
-  display: grid;
   height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 30px;
+  row-gap: 5px;
 }
 
 .imageContainer {
@@ -163,10 +165,24 @@ ul.scrollingText li:nth-child(odd of .first, .second, .third, .fourth, .fifth) {
   grid-template-columns: 2r 1fr 1fr;
 }
 
-.infoContainer table {
+table {
   text-align: left;
   max-width: 100%;
   width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 2px solid var(--dog-blue);
+}
+
+table.metrics-table tr:last-of-type {
+  border-bottom: none;
+}
+
+table td,
+thead th {
+  text-align: center;
 }
 
 .statsContainer {

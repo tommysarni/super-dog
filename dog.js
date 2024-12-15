@@ -119,7 +119,7 @@ function Dog(id) {
 
     const scrollingListEl = document.querySelector('.scrollingTextContainer');
     if (data.temperament) {
-      let words = data.temperament.split('|').filter(s => s);
+      const words = data.temperament.split('|').filter(s => s).map(s => s.replace('-', ' '));
       makeScrollingList(scrollingListEl, words);
     }
 

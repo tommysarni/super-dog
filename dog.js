@@ -92,25 +92,35 @@ function Dog(id) {
     }
 
     // SCROLLING TEXT
-    const scrollingListEl = document.querySelector('.scrollingTextContainer .scrollingText');
-    if (scrollingListEl) {
-      scrollingListEl.replaceChildren();
-      if (data.temperament) {
-        let words = data.temperament.split('|').filter(s => s);
-        const wordLength = words.length;
-        if (words.length) {
-          while (words.length < 18) {
-            words = [...words, ...words.slice(0, wordLength)];
-          }
-        }
-        words.forEach((w, idx) => {
-          const li = document.createElement('li');
-          const cn = (['first', 'second', 'third', 'fourth', 'fifth'])[Math.floor(idx / wordLength)];
-          li.classList.add(cn);
-          li.textContent = w;
-          scrollingListEl.appendChild(li);
+    const makeScrollingList = (location, words) => {
+      if (location && words.length) {
+        const evenWordLength = words.length % 2 === 0;
+        location.replaceChildren();
+        let front = document.createElement('ul');
+        front.classList.add('scrollingText', 'front', 'odd');
+        let back = document.createElement('ul');
+        back.classList.add('scrollingText', 'back', evenWordLength ? 'even' : 'odd');
+        let extra = document.createElement('ul');
+        extra.classList.add('scrollingText', 'extra', evenWordLength ? 'even' : 'odd');
+
+        [front, back, extra].forEach(ul => {
+          words.forEach(w => {
+            let li = document.createElement('li');
+            li.textContent = w;
+            ul.appendChild(li);
+          });
         });
+
+        location.appendChild(front);
+        location.appendChild(back);
+        location.appendChild(extra);
       }
+    };
+
+    const scrollingListEl = document.querySelector('.scrollingTextContainer');
+    if (data.temperament) {
+      let words = data.temperament.split('|').filter(s => s);
+      makeScrollingList(scrollingListEl, words);
     }
 
     // INFO TABLE
@@ -135,7 +145,7 @@ function Dog(id) {
       if (!locationEl || val === undefined) return;
       locationEl.replaceChildren();
       locationEl.setAttribute('aria-valuenow', val);
-      
+
       for (let i = 0; i < 5; i++) {
         const progress = document.createElement('div');
         progress.classList.add('progress-segment');

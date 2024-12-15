@@ -7,6 +7,7 @@
   --dog-grey: #898989;
   --dog-pink: #E5D0E3;
   --dog-dark: #1C3144;
+  --text-scroll-length: 20s;
 }
 
 * {
@@ -120,16 +121,35 @@ div.dashboard {
   width: 95%;
 }
 
-ul.scrollingText {
-  display: flex;
-  list-style-type: none;
-  width: max-content;
-  animation: marquee 7s ease-in-out infinite;
-
+.scrollingTextContainer {
+  position: relative;
+  overflow: hidden;
+  gap: 1rem;
 }
 
-ul.scrollingText:hover {
-  animation-play-state: paused;
+ul.scrollingText {
+  position: absolute;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  list-style-type: none;
+  width: min-content;
+}
+
+ul.scrollingText.front {
+  animation: marquee-f var(--text-scroll-length) linear infinite;
+}
+
+ul.scrollingText.back {
+  justify-content: flex-start;
+  transform: translateX(100%);
+  animation: marquee-b var(--text-scroll-length) linear infinite;
+}
+
+ul.scrollingText.extra {
+  justify-content: flex-start;
+  transform: translateX(200%);
+  animation: marquee-e var(--text-scroll-length) linear infinite;
 }
 
 ul.scrollingText li {
@@ -143,28 +163,50 @@ ul.scrollingText li {
   color: var(--dog-blue);
 }
 
-ul.scrollingText li:nth-child(odd of .first, .second, .third, .fourth, .fifth) {
+ul.scrollingText.front li:nth-child(odd) {
   color: var(--dog-orange);
 }
 
-.scrollingTextContainer {
-  overflow: hidden;
+ul.scrollingText.back.odd li:nth-child(even) {
+  color: var(--dog-orange);
 }
 
-@keyframes marquee {
+ul.scrollingText.extra.odd li:nth-child(odd) {
+  color: var(--dog-orange);
+}
+
+@keyframes marquee-f {
   0% {
     transform: translateX(0%);
   }
 
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes marquee-b {
+  0% {
+    transform: translateX(100%);
+  }
 
   100% {
-    transform: translateX(calc(-200% / 3));
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-e {
+  0% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(0%);
   }
 }
 
 .infoContainer {
   display: grid;
-  grid-template-columns: 2r 1fr 1fr;
 }
 
 table {

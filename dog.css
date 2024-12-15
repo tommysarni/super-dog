@@ -73,12 +73,13 @@ div.dashboard {
 .graphicsContainer {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr 30px;
+  grid-template-rows: 2fr 1fr 30px;
   row-gap: 5px;
 }
 
 .imageContainer {
   display: grid;
+  grid-template-rows: 1fr;
   width: 100%;
   border-radius: 5px;
 }
@@ -86,24 +87,24 @@ div.dashboard {
 .imageContainer img {
   text-align: start;
   width: 100%;
-  height: auto;
-  max-height: 200px;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
   object-fit: cover;
   z-index: 2;
   border-radius: inherit;
-  transition: transform linear 500ms;
 }
 
 .attributionContainer {
   padding-top: 0.5%;
-  height: 5%;
+  height: min-content;
   width: 100%;
   font-size: 12px;
   display: flex;
   gap: 5px;
   background: var(--dog-white);
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .attributionContainer a {
@@ -114,6 +115,7 @@ div.dashboard {
 .attributionContainer a,
 .attributionContainer p {
   color: var(--dog-grey);
+  overflow-wrap: anywhere;
 }
 
 .attributionContainer img {
@@ -270,7 +272,7 @@ footer {
   height: 100px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
 
   body {
     margin: 0 10%;

@@ -190,7 +190,7 @@ function Dog(id) {
       }
 
       const pos = response.headers.get('x-amz-meta-pos');
-      const author = response.headers.get('x-amz-meta-author');
+      const author = decodeURIComponent(response.headers.get('x-amz-meta-author') || '');
       const ccLink = response.headers.get('x-amz-meta-ccLink');
       const loc = response.headers.get('x-amz-meta-loc');
 

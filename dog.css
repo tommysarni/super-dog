@@ -4,7 +4,9 @@
   --dog-green: #98fb98;
   --dog-orange: #FF7F50;
   --dog-white: #ffffff;
-  --dog-grey: grey;
+  --dog-grey: #898989;
+  --dog-pink: #E5D0E3;
+  --dog-dark: #1C3144;
 }
 
 * {
@@ -190,49 +192,36 @@ thead th {
   display: grid;
   position: relative;
   column-gap: 40px;
+  row-gap: 10px;
   overflow-y: scroll;
   margin-top: 15px;
   margin-bottom: 10px;
-  padding-right: 10px;
+  padding-right: 15px;
 }
 
-.stat {
-  flex-basis: 13%;
-}
-
-.stat p {
+.stat label {
   font-weight: 200;
   margin-bottom: 3px;
 }
 
-.progressContainer {
+.progress-bar {
   display: flex;
   flex-direction: row;
+  height: 15px;
   gap: 5px;
-  margin: 5px 0;
 }
 
-progress::-webkit-progress-inner-element {
-  margin: 0;
-}
-
-progress::-webkit-progress-bar {
-  border-radius: 25px;
-  height: 8px;
-  background-color: var(--dog-grey);
-}
-
-progress[value]::-webkit-progress-value {
-  border-radius: 25px;
-  background-color: var(--dog-blue);
-  margin: 0;
-}
-
-progress {
+.progress-segment {
   width: 100%;
-  appearance: none;
-  display: block;
+  background-color: var(--dog-grey);
+  border-radius: 3px;
+}
 
+.segment-value {
+  border-radius: inherit;
+  background-color: var(--dog-blue);
+  height: 80%;
+  width: 0%;
 }
 
 footer {
@@ -292,7 +281,7 @@ footer {
     padding-right: 0;
   }
 
-  .stat p {
+  .stat label {
     margin: 0;
   }
 

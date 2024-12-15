@@ -134,17 +134,25 @@ function Dog(id) {
     const createAndAddProgress = (locationEl, val) => {
       if (!locationEl || val === undefined) return;
       locationEl.replaceChildren();
+      locationEl.setAttribute('aria-valuenow', val);
+      
       for (let i = 0; i < 5; i++) {
-        const progress = document.createElement('progress');
-        progress.max = 1;
-        progress.value = val - 1 < 0 ? val.toFixed(1) : 1;
-        val -= progress.value;
-        progress.classList.add('segment');
+        const progress = document.createElement('div');
+        progress.classList.add('progress-segment');
+
+        const segmentValue = document.createElement('div');
+        segmentValue.classList.add('segment-value');
+
+        const decimalVal = val - 1 < 0 ? val.toFixed(1) : 1;
+
+        segmentValue.style.width = decimalVal * 100 + '%';
+        progress.appendChild(segmentValue);
+        val -= decimalVal;
         locationEl.appendChild(progress);
       }
     };
 
-    const progressIds = ['goodWithChildren', 'energy', 'excercise', 'playfullness', 'affection', 'dogFriendliness', 'petFriendliness', 'strangerFriendliness', 'trainingEase', 'watchdog', 'protection', 'grooming', 'coldTolerance', 'heatTolerance'];
+    const progressIds = ['goodWithChildren', 'energy', 'exercise', 'playfullness', 'affection', 'dogFriendliness', 'petFriendliness', 'strangerFriendliness', 'trainingEase', 'watchdog', 'protection', 'grooming', 'coldTolerance', 'heatTolerance'];
 
     progressIds.forEach(id => {
       const el = document.getElementById(id);

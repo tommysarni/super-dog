@@ -3,7 +3,7 @@ function Dog(id) {
   if (!this.id) {
     const urlParams = new URLSearchParams(window.location.search);
     const raw = urlParams.get('breed');
-    this.id = decodeURIComponent(raw);
+    if (raw) this.id = decodeURIComponent(raw);
   }
 
   function isTokenExpired(token) {
@@ -206,9 +206,8 @@ function Dog(id) {
         if (ccLink && ccLinkEl) ccLinkEl.href = ccLink;
         const locEl = document.getElementById('loc');
         if (loc && locEl) locEl.href = loc;
-      } else {
         const attributionEl = document.querySelector('.attributionContainer');
-        if (attributionEl) attributionEl.style.display = 'none';
+        if (attributionEl) attributionEl.style.display = 'flex';
       }
 
     } catch (error) {
@@ -217,11 +216,23 @@ function Dog(id) {
 
   };
 
+  this.removeLoaders = () => {
+    const loaders = document.querySelectorAll('.loading');
+    loaders.forEach(el => {
+      el.classList.remove('loading');
+    });
+  };
+
   const init = async () => {
     if (this.id) {
       const breedData = await this.getBreedData();
+      if (breedData.error) {
+        this.removeLoaders();
+        throw new Error('Error Retrieving Data, Reason: ' + breedData.error);
+      }
       this.hydrateData(breedData);
       this.updateImagePosition();
+      this.removeLoaders();
     }
   };
 

@@ -8,6 +8,7 @@
   --dog-pink: #E5D0E3;
   --dog-dark: #1C3144;
   --text-scroll-length: 20s;
+  --loading-animation-length: 1.5s;
 }
 
 * {
@@ -84,6 +85,41 @@ div.dashboard {
   border-radius: 5px;
 }
 
+
+@property --img-load-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -10%;
+}
+
+@property --img-load-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 110%;
+}
+
+.imageContainer.loading {
+  background: conic-gradient(from 45deg at var(--img-load-x) var(--img-load-y), var(--dog-grey), var(--dog-blue), var(--dog-grey));
+  animation: loading-diagonal var(--loading-animation-length) linear infinite alternate;
+}
+
+@keyframes loading-diagonal {
+  0% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+
+  50% {
+    --img-load-x: 110%;
+    --img-load-y: -10%;
+  }
+
+  100% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+}
+
 .imageContainer img {
   text-align: start;
   width: 100%;
@@ -105,6 +141,9 @@ div.dashboard {
   background: var(--dog-white);
   justify-content: flex-end;
   align-items: center;
+
+  /* INITIALLY HIDDEN */
+  display: none;
 }
 
 .attributionContainer a {
@@ -267,6 +306,43 @@ thead th {
   background-color: var(--dog-blue);
   height: 80%;
   width: 0%;
+  transition: width 2s linear;
+}
+
+.segment-value.loading {
+  animation: segment-load var(--loading-animation-length) linear infinite alternate;
+}
+
+.progress-segment:nth-of-type(2)>.segment-value.loading {
+  animation-delay: var(--loading-animation-length);
+  animation-direction: alternate-reverse;
+}
+
+.progress-segment:nth-of-type(3)>.segment-value.loading {
+  animation-delay: calc(var(--loading-animation-length) * 2);
+}
+
+.progress-segment:nth-of-type(4)>.segment-value.loading {
+  animation-delay: calc(var(--loading-animation-length) * 3);
+  animation-direction: alternate-reverse;
+}
+
+.progress-segment:nth-of-type(5)>.segment-value.loading {
+  animation-delay: calc(var(--loading-animation-length) * 4);
+}
+
+@keyframes segment-load {
+  0% {
+    width: 0%;
+  }
+
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
 }
 
 footer {
@@ -330,4 +406,11 @@ footer {
     margin: 0;
   }
 
+}
+
+@media (prefers-reduced-motion) {
+  :root {
+    --loading-animation-length: 2.5s;
+    --text-scroll-length: 30s;
+  }
 }

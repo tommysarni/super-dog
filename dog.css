@@ -331,6 +331,46 @@ thead th {
   animation-delay: calc(var(--loading-animation-length) * 4);
 }
 
+/* ERROR PAGE */
+main.errorPage {
+  margin-bottom: auto;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  height: calc(100vh - 200px);
+}
+
+.errorContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: var(--dog-white);
+  padding: 20px;
+}
+
+.errorContainer>h1 {
+  margin-bottom: 10px;
+}
+
+.errorContainer>p {
+  padding: 10px;
+  text-align: center;
+}
+
+.errorMessage {
+  background-color: var(--dog-pink);
+}
+
+.textEmphasize {
+  display: inline-block;
+  background-color: var(--dog-dark);
+  padding: 5px 7px;
+  border-radius: 5px;
+  color: var(--dog-white);
+}
+
+.optionMessage {
+  background-color: var(--dog-green);
+}
+
 @keyframes segment-load {
   0% {
     width: 0%;

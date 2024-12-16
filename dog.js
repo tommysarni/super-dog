@@ -223,16 +223,56 @@ function Dog(id) {
     });
   };
 
+  this.showErrorPage = (error) => {
+
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.replaceChildren();
+      mainEl.classList.add('errorPage');
+
+      const container = document.createElement('div');
+      container.classList.add('errorContainer');
+
+      const errorMessageEl = document.createElement('h1');
+      errorMessageEl.textContent = `Error: ${error}`;
+
+      const errorDescriptionEl = document.createElement('p');
+      errorDescriptionEl.classList.add('errorMessage');
+
+      errorDescriptionEl.innerHTML = (this.id === undefined) ? `Oops you forgot to select a breed!` : `Unable to find breed with name: <i class="textEmphasize">${this.id}</i>`;
+
+      const linkOptionEl = document.createElement('p');
+      linkOptionEl.classList.add('optionMessage');
+      linkOptionEl.innerHTML = `Take a look at the <a class="textEmphasize" href="">list of breeds</a> here!`;
+
+      container.appendChild(errorMessageEl);
+      container.appendChild(errorDescriptionEl);
+      container.appendChild(linkOptionEl);
+
+      const spacer = document.createElement('div');
+      spacer.classList.add('spacer');
+      mainEl.appendChild(spacer.cloneNode());
+      mainEl.appendChild(container);
+      mainEl.appendChild(spacer.cloneNode());
+    }
+  };
+
   const init = async () => {
     if (this.id) {
       const breedData = await this.getBreedData();
       if (breedData.error) {
         this.removeLoaders();
+        this.showErrorPage(breedData.error);
         throw new Error('Error Retrieving Data, Reason: ' + breedData.error);
       }
       this.hydrateData(breedData);
       this.updateImagePosition();
       this.removeLoaders();
+    } else {
+      const err = { error: 'No Breed Provided', status: 404 };
+      this.removeLoaders();
+      this.showErrorPage(err.error);
+      throw new Error('Error Retrieving Data, Reason: ' + err.error);
     }
   };
 

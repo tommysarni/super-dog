@@ -271,6 +271,14 @@ thead th {
   text-align: center;
 }
 
+.unitsButtonContainer {
+  width: 25%;
+}
+
+button.units {
+  width: 100%;
+}
+
 .statsContainer {
   width: 100%;
   display: grid;

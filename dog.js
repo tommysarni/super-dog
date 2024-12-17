@@ -1,5 +1,8 @@
 function Dog(id) {
   this.id = id;
+  this.unitType = 'US'; // US or METRIC
+  this.loaded = false;
+
   if (!this.id) {
     const urlParams = new URLSearchParams(window.location.search);
     const raw = urlParams.get('breed');
@@ -257,14 +260,84 @@ function Dog(id) {
     }
   };
 
+  this.onUnitButtonPress = (e) => {
+    if (this.loaded && this.data) {
+      if (e.target) {
+        e.target.textContent = this.unitType === 'METRIC' ? 'Metric' : 'US';
+      }
+      this.unitType = this.unitType === 'US' ? 'METRIC' : 'US';
+      const record = {
+        US: {
+          heightUnit: 'in',
+          weightUnit: 'lbs',
+          maleHeight: this.data.maleHeightInInches,
+          femaleHeight: this.data.femaleHeightInInches,
+          maleWeight: this.data.maleWeightInLbs,
+          femaleWeight: this.data.femaleWeightInLbs,
+        },
+        METRIC: {
+          heightUnit: 'cm',
+          weightUnit: 'kgs',
+          maleHeight: this.data.maleHeightInCm,
+          femaleHeight: this.data.femaleHeightInCm,
+          maleWeight: this.data.maleWeightInKgs,
+          femaleWeight: this.data.femaleWeightInKgs,
+        }
+      }[this.unitType];
+
+      const m_height_el = document.getElementById('maleHeight');
+      if (m_height_el) {
+        m_height_el.textContent = record.maleHeight;
+      }
+      const f_height_el = document.getElementById('femaleHeight');
+      if (f_height_el) {
+        f_height_el.textContent = record.femaleHeight;
+      }
+      const m_weight_el = document.getElementById('maleWeight');
+      if (m_weight_el) {
+        m_weight_el.textContent = record.maleWeight;
+      }
+      const f_weight_el = document.getElementById('femaleWeight');
+      if (f_weight_el) {
+        f_weight_el.textContent = record.femaleWeight;
+      }
+      const height_label_el = document.getElementById('heightUnit');
+      if (height_label_el) {
+        height_label_el.textContent = record.heightUnit;
+      }
+      const weight_label_el = document.getElementById('weightUnit');
+      if (weight_label_el) {
+        weight_label_el.textContent = record.weightUnit;
+      }
+    }
+  };
+
+  this.addButtonFuntionality = () => {
+    const menuBtn = document.querySelector('button.hamburger');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        console.log('clicked menu');
+      });
+    }
+    const unitsBtn = document.querySelector('button.units');
+    if (unitsBtn) {
+      unitsBtn.addEventListener('click', (e) => {
+        this.onUnitButtonPress(e);
+      });
+    }
+  };
+
   const init = async () => {
+    this.addButtonFuntionality();
     if (this.id) {
       const breedData = await this.getBreedData();
       if (breedData.error) {
         this.removeLoaders();
         this.showErrorPage(breedData.error);
+        this.loaded = true;
         throw new Error('Error Retrieving Data, Reason: ' + breedData.error);
       }
+      this.data = breedData;
       this.hydrateData(breedData);
       this.updateImagePosition();
       this.removeLoaders();
@@ -272,8 +345,10 @@ function Dog(id) {
       const err = { error: 'No Breed Provided', status: 404 };
       this.removeLoaders();
       this.showErrorPage(err.error);
+      this.loaded = true;
       throw new Error('Error Retrieving Data, Reason: ' + err.error);
     }
+    this.loaded = true;
   };
 
   init();

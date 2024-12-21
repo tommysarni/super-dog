@@ -41,12 +41,34 @@ header {
   flex-direction: row-reverse;
 }
 
-header img.logo {
+#svg_logo {
   position: absolute;
-  top: 50%;
+  width: 60px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 }
+
+/* SVG - LOGO */
+.bg-rect {
+  stroke-miterlimit: 10;
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+}
+
+.nose:hover {
+  stroke: var(--dog-white);
+  fill: var(--dog-dark);
+}
+
+.ear,
+.nose {
+  stroke: var(--dog-white);
+  stroke-miterlimit: 10;
+}
+
+
 
 nav {
   position: relative;

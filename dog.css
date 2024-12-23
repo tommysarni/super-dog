@@ -41,17 +41,30 @@ header {
   flex-direction: row-reverse;
 }
 
-#svg_logo {
+#svg_logo_menu {
+  left: calc(10% - 10px);
+  top: 13px;
+}
+
+.svg_logo {
   position: absolute;
-  width: 60px;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  top: 10%;
+  width: 65px;
+  left: 0%;
+}
+
+.modal>svg:nth-child(1) {
+  left: calc(10% - 10px);
+  top: 13px;
 }
 
 /* SVG - LOGO */
+.container-rect {
+  fill: transparent;
+}
+
 .bg-rect {
+  stroke-width: 2pt;
   stroke-miterlimit: 10;
   fill: var(--dog-white);
   stroke: var(--dog-dark);
@@ -70,11 +83,6 @@ header {
 
 
 
-nav {
-  position: relative;
-  top: 50%;
-}
-
 nav ul.links {
   display: none;
 }
@@ -84,11 +92,16 @@ ul.links>li {
 }
 
 .hamburger {
-  width: fit-content;
-  height: 25px;
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  right: 0;
+  top: 10%;
   padding: 10px;
-  top: -13px;
-  position: relative;
+}
+
+.hamburger>img {
+  padding: 10px;
 }
 
 .modal {
@@ -107,9 +120,9 @@ ul.links>li {
 
 .modalEscape {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  top: 30px;
+  width: 65px;
+  height: 65px;
+  top: 13px;
   right: calc(10% - 10px);
 }
 
@@ -314,15 +327,15 @@ ul.scrollingText li {
   color: var(--dog-blue);
 }
 
-ul.scrollingText.front li:nth-child(odd) {
+ul.scrollingText li:nth-child(odd) {
   color: var(--dog-orange);
+}
+
+ul.scrollingText.back.odd li:nth-child(odd) {
+  color: var(--dog-blue);
 }
 
 ul.scrollingText.back.odd li:nth-child(even) {
-  color: var(--dog-orange);
-}
-
-ul.scrollingText.extra.odd li:nth-child(odd) {
   color: var(--dog-orange);
 }
 
@@ -514,6 +527,11 @@ footer {
   }
 
   /* HEADER */
+  nav {
+    position: relative;
+    top: 50%;
+  }
+
   nav ul.links {
     display: flex;
     gap: 5px;

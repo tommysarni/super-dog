@@ -194,7 +194,7 @@ div.dashboard {
 .graphicsContainer {
   height: 100%;
   display: grid;
-  grid-template-rows: 2fr 1fr 30px;
+  grid-template-rows: 1fr 1fr 30px;
   row-gap: 5px;
 }
 
@@ -542,6 +542,10 @@ footer {
   }
 
   .hamburger {
+    display: none;
+  }
+
+  .modal {
     display: none;
   }
 

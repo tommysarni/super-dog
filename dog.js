@@ -133,6 +133,8 @@ function Dog(id) {
     if (originEl) originEl.textContent = data.origin;
     const originDateEl = document.getElementById('dateOfOrigin');
     if (originDateEl) originDateEl.textContent = data.originDate;
+    const lifespanEl = document.getElementById('lifespan');
+    if (lifespanEl) lifespanEl.textContent = data.lifespan;
 
     // WEIGHT TABLE
     const maleHeightEl = document.getElementById('maleHeight');

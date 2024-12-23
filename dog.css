@@ -373,6 +373,10 @@ ul.scrollingText.back.odd li:nth-child(even) {
   display: grid;
 }
 
+#group {
+  text-transform: capitalize;
+}
+
 table {
   text-align: left;
   max-width: 100%;

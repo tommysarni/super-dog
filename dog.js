@@ -178,47 +178,58 @@ function Dog(id) {
   };
 
   this.updateImagePosition = async () => {
-    const URL = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
-    try {
-      const response = await fetch(URL, {
-        method: 'HEAD',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          Origin: window.location.origin,
-          'Content-Type': 'application/json'
+    const cachedData = sessionStorage.getItem(this.id);
+    const json = JSON.parse(cachedData || '{}');
+    let pos, author, ccLink, loc;
+
+    if (cachedData && json.pos) {
+      pos = json.pos;
+      author = json.author;
+      ccLink = json.ccLink;
+      loc = json.loc;
+    } else {
+      const URL = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
+      try {
+        const response = await fetch(URL, {
+          method: 'HEAD',
+          mode: 'cors',
+          headers: {
+            Origin: window.location.origin,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error while fetching image metadata! Status: ${response.status}`);
         }
-      });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error while fetching image metadata! Status: ${response.status}`);
+        pos = response.headers.get('x-amz-meta-pos');
+        author = decodeURIComponent(response.headers.get('x-amz-meta-author') || '');
+        ccLink = response.headers.get('x-amz-meta-ccLink');
+        loc = response.headers.get('x-amz-meta-loc');
+
+        sessionStorage.setItem(this.id, JSON.stringify({ ...(json || {}), pos, author, ccLink, loc }));
+
+      } catch (error) {
+        console.error('Error fetching image metadata:', error);
       }
-
-      const pos = response.headers.get('x-amz-meta-pos');
-      const author = decodeURIComponent(response.headers.get('x-amz-meta-author') || '');
-      const ccLink = response.headers.get('x-amz-meta-ccLink');
-      const loc = response.headers.get('x-amz-meta-loc');
-
-      const imgEl = document.querySelector('.imageContainer img');
-      if (imgEl && pos !== undefined) {
-        imgEl.style.objectPosition = pos;
-      }
-
-      if (author || ccLink || loc) {
-        const authorEl = document.getElementById('author');
-        if (author && authorEl) authorEl.textContent = author;
-        const ccLinkEl = document.getElementById('ccLink');
-        if (ccLink && ccLinkEl) ccLinkEl.href = ccLink;
-        const locEl = document.getElementById('loc');
-        if (loc && locEl) locEl.href = loc;
-        const attributionEl = document.querySelector('.attributionContainer');
-        if (attributionEl) attributionEl.style.display = 'flex';
-      }
-
-    } catch (error) {
-      console.error('Error fetching image metadata:', error);
     }
 
+    const imgEl = document.querySelector('.imageContainer img');
+    if (imgEl && pos !== undefined) {
+      imgEl.style.objectPosition = pos;
+    }
+
+    if (author || ccLink || loc) {
+      const authorEl = document.getElementById('author');
+      if (author && authorEl) authorEl.textContent = author;
+      const ccLinkEl = document.getElementById('ccLink');
+      if (ccLink && ccLinkEl) ccLinkEl.href = ccLink;
+      const locEl = document.getElementById('loc');
+      if (loc && locEl) locEl.href = loc;
+      const attributionEl = document.querySelector('.attributionContainer');
+      if (attributionEl) attributionEl.style.display = 'flex';
+    }
   };
 
   this.removeLoaders = () => {

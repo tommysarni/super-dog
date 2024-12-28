@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Dog</title>
+  <link rel="stylesheet" href="dog.css">
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <nav class="modal">
+    <a href="">
+      <svg id="svg_logo_menu" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <button class="modalEscape button">X</button>
+    <div class="spacer"></div>
+    <ul class="modalLinks">
+      <li class="button"><a href="">Home</a></li>
+      <li class="button"><a href="">Quiz</a></li>
+      <li class="button"><a href="">Breeds</a></li>
+      <li class="button"><a href="">FAQs</a></li>
+    </ul>
+  </nav>
+  <header>
+    <a href="">
+      <svg id="svg_logo" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <nav>
+      <button class="hamburger button">
+        <img rel="icon" src="/hamburger_menu.svg" height="50px" width="50px" />
+      </button>
+      <ul class="links">
+        <li><a href="">Home</a></li>
+        <li><a href="">Quiz</a></li>
+        <li><a href="">Breeds</a></li>
+        <li><a href="">FAQs</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="dashboard">
+      <h1 class="loading">Loading...</h1>
+      <div class="graphicsContainer">
+        <div class="imageContainer loading">
+          <img class="" src="" alt="" />
+          <div class="attributionContainer">
+            <a id="ccLink" href="">
+              <img class="" src="cc.svg" alt="Creative Commons Logo" />
+            </a>
+            <p>
+              <span id="author">Author</span> / <span><a id="loc" href="">Original Location</a></span>
+            </p>
+          </div>
+        </div>
+        <div class="infoContainer">
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th scope="row">Group</th>
+                <td id="group">Sporting</td>
+              </tr>
+              <tr>
+                <th scope="row">Origin</th>
+                <td id="origin">USA</td>
+              </tr>
+              <tr>
+                <th scope="row">Date of Origin</th>
+                <td id="dateOfOrigin">1800s</td>
+              </tr>
+              <tr>
+                <th scope="row">Lifespan</th>
+                <td><span id="lifespan">10-12</span> years</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Male</th>
+                <th scope="col">Female</th>
+                <th scope="col" class="unitsButtonContainer"><button class="units button">Metric</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Height</th>
+                <td id="maleHeight">Tall</td>
+                <td id="femaleHeight">Little</td>
+                <td id="heightUnit">in</td>
+              </tr>
+              <tr>
+                <th scope="row">Weight</th>
+                <td id="maleWeight">Strong</td>
+                <td id="femaleWeight">Itty Bitty</td>
+                <td id="weightUnit">lbs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="scrollingTextContainer">
+          <ul class="scrollingText front odd">
+            <li>Snuggly</li>
+            <li>Fluffy</li>
+            <li>Cozy</li>
+            <li>Loving</li>
+            <li>Friendly</li>
+            <li>Fun</li>
+            <li>Playful</li>
+          </ul>
+          <ul class="scrollingText back odd">
+            <li>Snuggly</li>
+            <li>Fluffy</li>
+            <li>Cozy</li>
+            <li>Loving</li>
+            <li>Friendly</li>
+            <li>Fun</li>
+            <li>Playful</li>
+          </ul>
+          <ul class="scrollingText extra odd">
+            <li>Snuggly</li>
+            <li>Fluffy</li>
+            <li>Cozy</li>
+            <li>Loving</li>
+            <li>Friendly</li>
+            <li>Fun</li>
+            <li>Playful</li>
+          </ul>
+        </div>
+      </div>
+      <div class="statsContainer">
+        <div class="stat">
+          <label for="goodWithChildren">Good with Children</label>
+          <div id="goodWithChildren" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="energy">Energy</label>
+          <div id="energy" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="exercise">Exercise</label>
+          <div id="exercise" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="playfullness">Playfullness</label>
+          <div id="playfullness" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="affection">Affection</label>
+          <div id="affection" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="dogFriendliness">Friendly toward Dogs</label>
+          <div id="dogFriendliness" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="petFriendliness">Friendly toward Pets</label>
+          <div id="petFriendliness" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="strangerFriendliness">Friendly Toward Strangers</label>
+          <div id="strangerFriendliness" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="trainingEase">Ease of Training</label>
+          <div id="trainingEase" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="watchdog">Watchdog Ability</label>
+          <div id="watchdog" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="protection">Protection Ability</label>
+          <div id="protection" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="grooming">Grooming Requirements</label>
+          <div id="grooming" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="coldTolerance">Cold Tolerance</label>
+          <div id="coldTolerance" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat">
+          <label for="heatTolerance">Heat Tolerance</label>
+          <div id="heatTolerance" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="5">
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+            <div class="progress-segment">
+              <div class="segment-value loading"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="dog.js"></script>
+</body>
+
+</html>

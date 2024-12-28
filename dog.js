@@ -83,7 +83,7 @@ function Dog(id) {
     // TITLE
     const titleEl = document.querySelector('h1');
     if (titleEl) {
-      titleEl.textContent = data.breed || '';
+      titleEl.textContent = decodeURIComponent(data.breed || '');
       document.title = data.breed || 'Super Dog';
     }
 

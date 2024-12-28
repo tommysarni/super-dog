@@ -83,8 +83,9 @@ function Dog(id) {
     // TITLE
     const titleEl = document.querySelector('h1');
     if (titleEl) {
-      titleEl.textContent = decodeURIComponent(data.breed || '');
-      document.title = data.breed || 'Super Dog';
+      const decodedTitle = decodeURIComponent(data.breed || '');
+      titleEl.textContent = decodedTitle;
+      document.title = decodedTitle || 'Super Dog';
     }
 
     // IMAGE

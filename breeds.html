@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Super Dog</title>
-  <link rel="stylesheet" href="dog.css">
+  <link rel="stylesheet" href="breeds.css">
   <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -74,9 +74,14 @@
     </nav>
   </header>
   <main>
-    <label for="site-search">Search the site:</label>
+    <label for="site-search">Search for Breeds:</label>
     <input type="search" id="site-search" name="q" />
     <button>Search</button>
+    <div class="listContainer">
+      <ul id="breedsList">
+        <li class="breed"><a href="">Brittany</a></li>
+      </ul>
+    </div>
   </main>
   <footer></footer>
   <script src="breeds.js"></script>

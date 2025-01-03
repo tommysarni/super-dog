@@ -71,7 +71,7 @@ function BreedList() {
 
   this.addBreedsToUI = (breeds) => {
     const loc = document.getElementById('breedsList');
-    if (loc && breeds.length) {
+    if (loc && breeds.length !== undefined) {
       loc.replaceChildren();
       breeds.forEach((b) => {
         const { breed, slug } = b || {};
@@ -126,6 +126,101 @@ function BreedList() {
       });
     }
 
+    function levenshteinDistance(str1, str2) {
+      const m = str1.length;
+      const n = str2.length;
+      const REPLACEMENT_PENALTY = 1;
+
+      let prevRow = new Array(n + 1).fill(0);
+      let currRow = new Array(n + 1).fill(0);
+
+      for (let j = 0; j <= n; j++) {
+        prevRow[j] = j;
+      }
+
+      for (let i = 1; i <= m; i++) {
+        currRow[0] = i;
+
+        for (let j = 1; j <= n; j++) {
+          if (str1[i - 1] === str2[j - 1]) {
+            currRow[j] = prevRow[j - 1];
+          } else {
+            currRow[j] = 1 + Math.min(
+              currRow[j - 1], // insert
+              prevRow[j], // remove
+              prevRow[j - 1] + REPLACEMENT_PENALTY // replace
+            );
+          }
+        }
+
+        prevRow = [...currRow];
+      }
+
+      return currRow[n];
+    }
+
+    function fuzzySubstringMatch(input, text) {
+      const inputLen = input.length;
+      const textLen = text.length;
+      let minDistance = Infinity;
+
+      for (let i = 0; i <= textLen - inputLen; i++) {
+        const substring = text.slice(i, i + inputLen);
+        const distance = levenshteinDistance(input, substring);
+        minDistance = Math.min(minDistance, distance);
+      }
+
+      return minDistance;
+    }
+
+    const searchBreeds = (query, breeds) => {
+      if (!query) return breeds;
+      query = query.trim().toLowerCase().replaceAll(/[-|\s]/g, '');
+
+      const SHORT_INPUT_THRESHOLD = 0;
+      const PREFIX_MATCH_SCORE = 100;
+      const FUZZY_MATCH_BASE_SCORE = 50;
+      const SUBSTRING_MATCH_SCORE = 80;
+      const MIN_SCORE = 47;
+
+      const results = [];
+      if (query.length <= SHORT_INPUT_THRESHOLD) {
+        return breeds.filter(b => {
+          const name = (b.breed || '').toLowerCase().replaceAll(/[-|\s]/g, '');
+          return name.startsWith(query);
+        });
+      };
+
+      for (const breedData of breeds) {
+        const breedLower = (breedData.breed || '').toLowerCase().replaceAll(/[-|\s]/g, '');
+        let score = 0;
+
+        if (breedLower.startsWith(query)) {
+          score = PREFIX_MATCH_SCORE;
+        } else if (breedLower.includes(query)) {
+          score = SUBSTRING_MATCH_SCORE;
+        } else {
+          const fuzzy_substring_distance = fuzzySubstringMatch(query, breedLower);
+          const distance = levenshteinDistance(query, breedLower);
+          score = FUZZY_MATCH_BASE_SCORE - Math.min(fuzzy_substring_distance, distance);
+        }
+
+        results.push({ ...breedData, score });
+      }
+
+      return results
+        .filter(data => data.score >= MIN_SCORE)
+        .sort((a, b) => b.score - a.score);
+    };
+
+    const searchInput = document.getElementById('site-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const searchVal = searchInput.value;
+        const filteredBreeds = searchBreeds(searchVal, this.breeds);
+        this.addBreedsToUI(filteredBreeds);
+      });
+    }
   };
 
   const init = async () => {
@@ -142,6 +237,6 @@ function BreedList() {
 
   init();
 
-}
+};
 
 const breeds = new BreedList();

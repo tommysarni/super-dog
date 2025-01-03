@@ -69,10 +69,29 @@ function BreedList() {
     }
   };
 
+  this.addBreedsToUI = (breeds) => {
+    const loc = document.getElementById('breedsList');
+    if (loc && breeds.length) {
+      loc.replaceChildren();
+      breeds.forEach((b) => {
+        const { breed, slug } = b || {};
+        if (!breed || !slug) return;
+        const li = document.createElement('li');
+        li.classList.add('breed');
+        const a = document.createElement('a');
+        a.textContent = decodeURIComponent(breed);
+        a.href = '/dog.html?breed=' + slug;
+        li.appendChild(a);
+        loc.appendChild(li);
+      });
+    }
+  };
+
   const init = async () => {
     try {
       const breeds = await this.getBreeds();
       this.breeds = breeds;
+      this.addBreedsToUI(this.breeds);
 
     } catch (error) {
       console.error(error);

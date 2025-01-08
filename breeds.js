@@ -228,6 +228,16 @@ function BreedList() {
         this.addBreedsToUI(filteredBreeds);
       });
     }
+
+    const expandBtn = document.querySelector('button.expand');
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => {
+        const filtersEl = document.querySelector('div.filters');
+        if (filtersEl) {
+          filtersEl.classList.toggle('expanded');
+        }
+      });
+    }
   };
 
   const init = async () => {

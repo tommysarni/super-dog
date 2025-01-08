@@ -83,6 +83,7 @@ function BreedList() {
         const p_breed = document.createElement('p');
         p_breed.textContent = decodeURIComponent(breed);
         const p_group = document.createElement('p');
+        p_group.classList.add('group');
         p_group.textContent = group;
         a.appendChild(p_breed);
         a.appendChild(p_group);
@@ -220,6 +221,7 @@ function BreedList() {
 
     const searchInput = document.getElementById('site-search');
     if (searchInput) {
+      searchInput.value = '';
       searchInput.addEventListener('input', () => {
         const searchVal = searchInput.value;
         const filteredBreeds = searchBreeds(searchVal, this.breeds);

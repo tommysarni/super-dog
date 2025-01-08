@@ -233,6 +233,9 @@ main.errorPage {
 
 
 /* BREED LIST */
+h1 {
+  margin: 20px 0;
+}
 
 input[type="search"] {
   /* For Safari */
@@ -269,6 +272,10 @@ input[type="search"] {
   text-decoration: none;
   color: inherit;
   padding: 20px;
+}
+
+p.group {
+  font-size: 17px;
 }
 
 footer {

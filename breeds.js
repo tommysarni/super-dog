@@ -74,13 +74,18 @@ function BreedList() {
     if (loc && breeds.length !== undefined) {
       loc.replaceChildren();
       breeds.forEach((b) => {
-        const { breed, slug } = b || {};
+        const { breed, slug, group } = b || {};
         if (!breed || !slug) return;
         const li = document.createElement('li');
         li.classList.add('breed');
         const a = document.createElement('a');
-        a.textContent = decodeURIComponent(breed);
         a.href = '/dog.html?breed=' + slug;
+        const p_breed = document.createElement('p');
+        p_breed.textContent = decodeURIComponent(breed);
+        const p_group = document.createElement('p');
+        p_group.textContent = group;
+        a.appendChild(p_breed);
+        a.appendChild(p_group);
         li.appendChild(a);
         loc.appendChild(li);
       });

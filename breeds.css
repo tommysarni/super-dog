@@ -233,6 +233,22 @@ main.errorPage {
 
 
 /* BREED LIST */
+
+input[type="search"] {
+  /* For Safari */
+  appearance: none;
+}
+
+#site-search {
+  width: 100%;
+  height: 50px;
+  border: none;
+  padding: 5px;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+
 .breed {
   background-color: var(--dog-white);
   font-size: 20px;
@@ -248,7 +264,7 @@ main.errorPage {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-decoration: none;
   color: inherit;

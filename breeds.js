@@ -254,6 +254,8 @@ function BreedList() {
         const filtersEl = document.querySelector('div.filters');
         if (filtersEl) {
           filtersEl.classList.toggle('expanded');
+          const expandBtn = document.querySelector('button.expand');
+          expandBtn.textContent = filtersEl.classList.contains('expanded') ? '-' : '+';
         }
       });
     }
@@ -382,7 +384,11 @@ function BreedList() {
         const filtersEl = document.querySelector('div.filters');
         if (filtersEl) {
           filtersEl.classList.toggle('expanded', false);
+          const expandBtn = document.querySelector('button.expand');
+          expandBtn.textContent = '+';
         }
+
+        window.scrollTo(0, 0);
 
       });
     }

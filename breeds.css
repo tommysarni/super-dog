@@ -25,7 +25,8 @@ body {
 }
 
 main {
-  height: 95vh;
+  min-height: 95vh;
+  height: min-content;
 }
 
 h1 {
@@ -252,7 +253,7 @@ input[type="search"] {
 }
 
 div.filters {
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 10px;
   max-height: 65px;
   overflow: hidden;
@@ -261,13 +262,14 @@ div.filters {
 }
 
 div.filters.expanded {
-  max-height: 800px;
+  max-height: 1200px;
 }
 
 div.filterMenu {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 div.filterMenu>button {
@@ -275,14 +277,26 @@ div.filterMenu>button {
 }
 
 button.expand {
+  font-weight: bold;
   aspect-ratio: 1/1;
-  width: 38px;
-  height: 38px;
+
 }
 
 button.progress.selected {
-  background-color: var(--dog-dark);
+  background-color: var(--dog-blue);
   color: var(--dog-white);
+}
+
+button.progress.selected:hover {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+}
+
+select {
+  appearance: none;
+  background-color: var(--dog-white);
+  border: 1px solid var(--dog-grey);
+  padding: 2px 5px;
 }
 
 .selects {
@@ -300,19 +314,27 @@ button.progress.selected {
 
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .stat {
   display: flex;
+  margin-top: 3px;
 }
 
 .progress {
   width: 100%;
   min-width: 30px;
   min-height: 30px;
-  border: solid 1px black;
+  border: solid 1px var(--dog-blue);
+  background-color: var(--dog-white);
+  cursor: pointer;
+}
+
+.progress:hover {
+  color: var(--dog-white);
+  background-color: var(--dog-blue);
 }
 
 div.submit {
@@ -328,6 +350,7 @@ div.submit {
 
 .breed {
   background-color: var(--dog-white);
+  border-bottom: 1px solid var(--dog-grey);
   font-size: 20px;
   list-style-type: none;
 }
@@ -383,5 +406,13 @@ footer {
 
   .inputSelect {
     flex-direction: row;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div.filters.expanded {
+    max-height: 800px;
   }
 }

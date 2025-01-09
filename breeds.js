@@ -243,8 +243,8 @@ function BreedList() {
       searchInput.value = '';
       searchInput.addEventListener('input', () => {
         const searchVal = searchInput.value;
-        const filteredBreeds = searchBreeds(searchVal, this.breeds);
-        this.addBreedsToUI(filteredBreeds);
+        const filteredBreeds = searchBreeds(searchVal, this.allBreeds);
+        this.addBreedsToUI(!searchVal ? this.breeds : filteredBreeds);
       });
     }
 
@@ -333,13 +333,57 @@ function BreedList() {
           }
         }
       }
-
       return results;
     };
+
+    this.makeFilterAPICall = async () => {
+      const filterOptions = prepFilterOptions();
+      if (!Object.keys(filterOptions).length) {
+        const cachedData = sessionStorage.getItem('breed-list');
+        if (cachedData) return JSON.parse(cachedData);
+      }
+
+      const token = await this.getToken();
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
+
+      const body = JSON.stringify({
+        path: 'v1/selectedBreeds',
+        method: "POST",
+        ...filterOptions
+      });
+
+      const requestOptions = {
+        method: "POST",
+        redirect: "follow",
+        headers,
+        body,
+      };
+
+      try {
+        const response = await fetch("https://doggo-api-inky.vercel.app/api/v1/proxy", requestOptions);
+        const json = await response.json();
+
+        return json;
+      } catch (error) {
+        console.error(error);
+      }
+
+    };
+
     const applyFilterBtn = document.querySelector('button.apply');
     if (applyFilterBtn) {
-      applyFilterBtn.addEventListener('click', (e) => {
-        console.log(prepFilterOptions());
+      applyFilterBtn.addEventListener('click', async (e) => {
+        const filtered = await this.makeFilterAPICall();
+        this.breeds = filtered;
+        this.addBreedsToUI(filtered);
+
+        const filtersEl = document.querySelector('div.filters');
+        if (filtersEl) {
+          filtersEl.classList.toggle('expanded', false);
+        }
+
       });
     }
   };
@@ -349,6 +393,7 @@ function BreedList() {
     try {
       const breeds = await this.getBreeds();
       this.breeds = breeds;
+      this.allBreeds = breeds;
       this.addBreedsToUI(this.breeds);
 
     } catch (error) {

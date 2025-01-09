@@ -225,6 +225,18 @@ div.filters.expanded {
   max-height: 1200px;
 }
 
+div.filters.expanded>div.filterMenu>div.filterHeader>button.apply {
+  display: block;
+}
+
+div.filterHeader {
+  display: flex;
+}
+
+div.filterHeader>button.apply {
+  display: none;
+}
+
 div.filterMenu {
   display: flex;
   justify-content: space-between;
@@ -239,7 +251,7 @@ div.filterMenu>button {
 button.expand {
   font-weight: bold;
   aspect-ratio: 1/1;
-
+  min-width: 35px;
 }
 
 button.progress.selected {

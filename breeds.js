@@ -428,8 +428,8 @@ function BreedList() {
 
     };
 
-    const applyFilterBtn = document.querySelector('button.apply');
-    if (applyFilterBtn) {
+    const applyFilterBtns = document.querySelectorAll('button.apply');
+    applyFilterBtns.forEach(applyFilterBtn => {
       applyFilterBtn.addEventListener('click', async (e) => {
         this.addLoaders();
         const filtered = await this.makeFilterAPICall();
@@ -447,7 +447,7 @@ function BreedList() {
         window.scrollTo(0, 0);
 
       });
-    }
+    });
   };
 
 

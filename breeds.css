@@ -444,6 +444,10 @@ div.submit {
   padding: 10px;
 }
 
+#breedsList.gallery .sectionTitleContainer {
+  margin: 0;
+}
+
 #breedsList.gallery>.breed>a>.anchorContainer {
   display: grid;
   grid-template-rows: min-content 4fr;

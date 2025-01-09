@@ -192,46 +192,6 @@ ul.links>li {
   color: inherit;
 }
 
-/* ERROR PAGE */
-main.errorPage {
-  margin-bottom: auto;
-  display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
-  height: calc(100vh - 200px);
-}
-
-.errorContainer {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  background-color: var(--dog-white);
-  padding: 20px;
-}
-
-.errorContainer>h1 {
-  margin-bottom: 10px;
-}
-
-.errorContainer>p {
-  padding: 10px;
-  text-align: center;
-}
-
-.errorMessage {
-  background-color: var(--dog-pink);
-}
-
-.textEmphasize {
-  display: inline-block;
-  background-color: var(--dog-dark);
-  padding: 5px 7px;
-  border-radius: 5px;
-  color: var(--dog-white);
-}
-
-.optionMessage {
-  background-color: var(--dog-green);
-}
-
 
 /* BREED LIST */
 h1 {
@@ -355,9 +315,16 @@ div.submit {
   list-style-type: none;
 }
 
-.breed:hover {
+.breed:not(.error):hover {
   background-color: var(--dog-dark);
   color: var(--dog-white);
+}
+
+.breed.error {
+  padding: 10px;
+  background-color: var(--dog-orange);
+  color: var(--dog-dark);
+  font-weight: bold;
 }
 
 @property --img-load-x {

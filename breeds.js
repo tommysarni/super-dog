@@ -91,27 +91,36 @@ function BreedList() {
 
   this.addBreedsToUI = (breeds) => {
     const loc = document.getElementById('breedsList');
-    if (loc && breeds.length !== undefined) {
+    if (loc) {
       loc.replaceChildren();
-      breeds.forEach((b, idx) => {
-        const { breed, slug, group } = b || {};
-        if (!breed || !slug) return;
-        const li = document.createElement('li');
-        li.classList.add('breed');
-        if (idx === this.focus) li.classList.add('highlighted');
-        const a = document.createElement('a');
-        a.href = '/dog.html?breed=' + slug;
-        const p_breed = document.createElement('p');
-        p_breed.textContent = decodeURIComponent(breed);
-        const p_group = document.createElement('p');
-        p_group.classList.add('group');
-        p_group.textContent = group;
-        a.appendChild(p_breed);
-        a.appendChild(p_group);
-        li.appendChild(a);
-        loc.appendChild(li);
-      });
+      if (breeds.length !== undefined) {
+        breeds.forEach((b, idx) => {
+          const { breed, slug, group } = b || {};
+          if (!breed || !slug) return;
+          const li = document.createElement('li');
+          li.classList.add('breed');
+          if (idx === this.focus) li.classList.add('highlighted');
+          const a = document.createElement('a');
+          a.href = '/dog.html?breed=' + slug;
+          const p_breed = document.createElement('p');
+          p_breed.textContent = decodeURIComponent(breed);
+          const p_group = document.createElement('p');
+          p_group.classList.add('group');
+          p_group.textContent = group;
+          a.appendChild(p_breed);
+          a.appendChild(p_group);
+          li.appendChild(a);
+          loc.appendChild(li);
+        });
+      } else {
+        const errorLi = document.createElement('li');
+        errorLi.classList.add('breed');
+        errorLi.classList.add('error');
+        errorLi.textContent = 'No breeds found with selected features';
+        loc.appendChild(errorLi);
+      }
     }
+
   };
 
   this.getNumberOfShowBreeds = () => {

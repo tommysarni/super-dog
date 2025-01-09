@@ -438,6 +438,12 @@ div.submit {
   font-weight: bold;
 }
 
+.sectionTitleContainer {
+  margin: 10px 0;
+  background: var(--dog-pink);
+  padding: 10px;
+}
+
 #breedsList.gallery>.breed>a>.anchorContainer {
   display: grid;
   grid-template-rows: min-content 4fr;

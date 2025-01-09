@@ -98,7 +98,19 @@ function BreedList() {
       if (breeds.length !== undefined) {
         breeds.forEach((b, idx) => {
           const { breed, slug, group } = b || {};
-          if (!breed || !slug) return;
+          if (!breed || !slug) {
+            const sectionTitle = b.text;
+            if (sectionTitle) {
+              const sectionTitleDiv = document.createElement('div');
+              sectionTitleDiv.classList.add('sectionTitleContainer');
+              const sectionTitleEl = document.createElement('h2');
+              sectionTitleEl.classList.add('sectionTile');
+              sectionTitleEl.textContent = sectionTitle;
+              sectionTitleDiv.appendChild(sectionTitleEl);
+              loc.appendChild(sectionTitleDiv);
+            }
+            return;
+          }
           const li = document.createElement('li');
           li.classList.add('breed');
           if (idx < 6) li.classList.add('visible');
@@ -289,7 +301,9 @@ function BreedList() {
         let searchedAllBreeds = searchBreeds(searchVal, this.allBreeds);
         searchedAllBreeds = searchedAllBreeds.filter(b => !filteredSlugs.includes(b.slug)
         );
-        const filteredBreeds = [...searchedFilteredBreeds, ...searchedAllBreeds];
+
+        const sectionDivider = searchedAllBreeds.length === 0 ? [] : [{ text: 'From All Results' }];
+        const filteredBreeds = [...searchedFilteredBreeds, ...sectionDivider, ...searchedAllBreeds];
 
         this.addBreedsToUI(!searchVal ? this.breeds : filteredBreeds);
       });

@@ -93,24 +93,45 @@ function BreedList() {
     const loc = document.getElementById('breedsList');
     if (loc) {
       loc.replaceChildren();
+      const showMoreBtn = document.getElementById('showMoreBtn');
+      if (showMoreBtn) showMoreBtn.style.display = 'block';
       if (breeds.length !== undefined) {
         breeds.forEach((b, idx) => {
           const { breed, slug, group } = b || {};
           if (!breed || !slug) return;
           const li = document.createElement('li');
           li.classList.add('breed');
+          if (idx < 6) li.classList.add('visible');
           if (idx === this.focus) li.classList.add('highlighted');
           const a = document.createElement('a');
           a.href = '/dog.html?breed=' + slug;
+
+          const anchorContainer = document.createElement('div');
+          anchorContainer.classList.add('anchorContainer');
+          const listInfoContainer = document.createElement('div');
+          listInfoContainer.classList.add('listInfoContainer');
           const p_breed = document.createElement('p');
           p_breed.textContent = decodeURIComponent(breed);
           const p_group = document.createElement('p');
           p_group.classList.add('group');
           p_group.textContent = group;
-          a.appendChild(p_breed);
-          a.appendChild(p_group);
+
+          const img = document.createElement('img');
+          img.classList.add('previewImage');
+          img.src = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${slug}.jpg`;
+          img.alt = breed;
+          img.loading = 'lazy';
+
+          listInfoContainer.appendChild(p_breed);
+          listInfoContainer.appendChild(p_group);
+          anchorContainer.appendChild(listInfoContainer);
+          anchorContainer.appendChild(img);
+          a.appendChild(anchorContainer);
           li.appendChild(a);
           loc.appendChild(li);
+
+          if (breeds.length <= 6 && showMoreBtn) showMoreBtn.style.display = 'none';
+
         });
       } else {
         const errorLi = document.createElement('li');
@@ -118,6 +139,9 @@ function BreedList() {
         errorLi.classList.add('error');
         errorLi.textContent = 'No breeds found with selected features';
         loc.appendChild(errorLi);
+        if (showMoreBtn) {
+          showMoreBtn.style.display = 'none';
+        }
       }
     }
 
@@ -448,6 +472,37 @@ function BreedList() {
 
       });
     });
+
+    const listViewBtn = document.querySelector('button.viewSelect.listView');
+    const galleryViewBtn = document.querySelector('button.viewSelect.galleryView');
+    if (listViewBtn && galleryViewBtn) {
+      const handleViewChange = () => {
+        const breedsListEl = document.getElementById('breedsList');
+        if (breedsListEl) {
+          breedsListEl.classList.toggle('gallery');
+        }
+      };
+
+      listViewBtn.addEventListener('click', () => {
+        handleViewChange(listViewBtn, galleryViewBtn);
+      });
+      galleryViewBtn.addEventListener('click', () => {
+        handleViewChange(listViewBtn, galleryViewBtn);
+      });
+    }
+
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', () => {
+        const notVisibleBreeds = document.querySelectorAll('.breed:not(.visible)');
+        for (let i = 0; i < Math.min(6, notVisibleBreeds.length); i++) {
+          const el = notVisibleBreeds[i];
+          el.classList.add('visible');
+        }
+      });
+    }
+
+
   };
 
 

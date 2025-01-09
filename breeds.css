@@ -213,7 +213,7 @@ input[type="search"] {
 }
 
 div.filters {
-  padding: 12px;
+  padding: 0 12px;
   margin-bottom: 10px;
   max-height: 65px;
   overflow: hidden;
@@ -248,10 +248,49 @@ div.filterMenu>button {
   padding: 10px;
 }
 
+button.expand,
+button.viewSelect {
+  aspect-ratio: 1/1;
+  width: 40px;
+}
+
 button.expand {
   font-weight: bold;
-  aspect-ratio: 1/1;
-  min-width: 35px;
+}
+
+button.viewSelect {
+  padding: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+svg#listView polyline {
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 10px;
+}
+
+.viewSelect:hover svg#listView polyline {
+  fill: var(--dog-dark);
+  stroke: var(--dog-white);
+}
+
+.viewSelect:hover svg#listView circle {
+  fill: var(--dog-white);
+}
+
+
+svg#galleryView rect {
+  fill: var(--dog-dark);
+}
+
+.viewSelect:hover svg#galleryView rect {
+  fill: var(--dog-white);
 }
 
 button.progress.selected {
@@ -317,7 +356,13 @@ div.submit {
 
 .apply {
   padding: 10px;
+  font-weight: bold;
+}
 
+#breedsList.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
 }
 
 .breed {
@@ -337,6 +382,37 @@ div.submit {
   background-color: var(--dog-orange);
   color: var(--dog-dark);
   font-weight: bold;
+}
+
+#breedsList.gallery>.breed>a>.anchorContainer {
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+#breedsList:not(.gallery)>.breed>a>.anchorContainer>.previewImage {
+  display: none;
+}
+
+#breedsList.gallery>.breed {
+  display: none;
+}
+
+#breedsList.gallery>.breed.visible {
+  display: list-item;
+}
+
+
+#breedsList:not(.gallery)~button#showMoreBtn {
+  display: none !important;
+}
+
+button#showMoreBtn {
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
 }
 
 @property --img-load-x {
@@ -384,11 +460,17 @@ div.submit {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   text-decoration: none;
   color: inherit;
   padding: 20px;
+}
+
+img.previewImage {
+  width: 100%;
+  height: 100%;
+  background-color: var(--dog-grey);
+  object-fit: cover;
 }
 
 p.group {
@@ -434,5 +516,13 @@ footer {
 
   div.filters.expanded {
     max-height: 800px;
+  }
+
+  #breedsList.gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #breedsList.gallery>.breed>a>.anchorContainer {
+    grid-template-rows: 1fr 3fr;
   }
 }

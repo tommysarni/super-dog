@@ -159,6 +159,7 @@ ul.links>li {
   border-radius: 10px;
   margin: 10px;
   background-color: var(--dog-white);
+  color: var(--dog-dark);
 }
 
 .button:hover {
@@ -166,6 +167,11 @@ ul.links>li {
   background-color: var(--dog-dark);
   color: var(--dog-white);
   border-color: var(--dog-dark);
+}
+
+.button:active {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
 }
 
 .modalLinks>li {
@@ -284,6 +290,15 @@ svg#listView polyline {
   fill: var(--dog-white);
 }
 
+.viewSelect:active svg#listView polyline {
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+}
+
+.viewSelect:active svg#listView circle {
+  fill: var(--dog-dark);
+}
+
 
 svg#galleryView rect {
   fill: var(--dog-dark);
@@ -291,6 +306,10 @@ svg#galleryView rect {
 
 .viewSelect:hover svg#galleryView rect {
   fill: var(--dog-white);
+}
+
+.viewSelect:active svg#galleryView rect {
+  fill: var(--dog-dark);
 }
 
 button.progress.selected {
@@ -336,6 +355,34 @@ select {
 .stat {
   display: flex;
   margin-top: 3px;
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.statClear {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+  padding: 1px 2px;
+  border: 1px var(--dog-dark) solid;
+  cursor: pointer;
+}
+
+button:disabled {
+  color: var(--dog-grey);
+  border-color: var(--dog-grey);
+}
+
+button.statClear:not(:disabled):hover {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+button.statClear:not(:disabled):active {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
 }
 
 .progress {

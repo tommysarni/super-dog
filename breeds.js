@@ -339,8 +339,17 @@ function BreedList() {
       });
     }
 
+    const clearStatFilter = (type) => {
+      const selectedFilter = this.filters[type];
+      if (selectedFilter) {
+        this.filters[type] = [];
+      }
+
+      return this.filters[type];
+    };
+
     const updateStatFilter = (type, num) => {
-      let selectedFilter = this.filters[type];
+      const selectedFilter = this.filters[type];
 
       if (selectedFilter !== undefined) {
         if (selectedFilter.length === 1) {
@@ -370,10 +379,27 @@ function BreedList() {
     const stats = document.querySelectorAll('.stat');
     stats.forEach(s => {
       const btns = document.querySelectorAll(`#${s.id}>button`);
+      const statHeader = s.previousElementSibling;
+      let clearBtn;
+      if (statHeader) {
+        clearBtn = statHeader.querySelector('.statClear');
+      }
+
+      if (clearBtn) {
+        clearBtn.disabled = true;
+        clearBtn.addEventListener('click', () => {
+          const updatedFilters = clearStatFilter(s.id);
+          updateStatUI(btns, updatedFilters);
+          clearBtn.disabled = true;
+        });
+      }
+
       btns.forEach((b, idx) => {
         b.addEventListener('click', () => {
           const updatedFilters = updateStatFilter(s.id, idx + 1);
           updateStatUI(btns, updatedFilters);
+
+          if (clearBtn) clearBtn.disabled = updatedFilters.length ? false : true;
         });
       });
     });

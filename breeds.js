@@ -148,7 +148,8 @@ function BreedList() {
   };
 
   this.getNumberOfShowBreeds = () => {
-    const breeds = document.querySelectorAll('.breed');
+    const galleryCheckEl = document.querySelector('#breedsList.gallery');
+    const breeds = document.querySelectorAll(galleryCheckEl ? '.breed.visible' : '.breed');
     return breeds.length;
   };
 

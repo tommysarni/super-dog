@@ -360,6 +360,41 @@ div.submit {
   color: var(--dog-white);
 }
 
+@property --img-load-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -10%;
+}
+
+@property --img-load-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 110%;
+}
+
+.loading,
+#breedsList.loading>.breed {
+  background: conic-gradient(from 45deg at var(--img-load-x) var(--img-load-y), var(--dog-white), var(--dog-blue), var(--dog-white));
+  animation: loading-diagonal 3s linear infinite alternate;
+}
+
+@keyframes loading-diagonal {
+  0% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+
+  50% {
+    --img-load-x: 110%;
+    --img-load-y: -10%;
+  }
+
+  100% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+}
+
 /* Highlight Breed List Item when search box is focused */
 #site-search:focus~div.listContainer>ul#breedsList>.breed.highlighted {
   background-color: var(--dog-dark);

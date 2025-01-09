@@ -422,7 +422,9 @@ function BreedList() {
     const applyFilterBtn = document.querySelector('button.apply');
     if (applyFilterBtn) {
       applyFilterBtn.addEventListener('click', async (e) => {
+        this.addLoaders();
         const filtered = await this.makeFilterAPICall();
+        this.removeLoaders();
         this.breeds = filtered;
         this.addBreedsToUI(filtered);
 
@@ -439,6 +441,25 @@ function BreedList() {
     }
   };
 
+
+  this.addLoaders = () => {
+    const filtersEl = document.querySelector('div.filters');
+    if (filtersEl) {
+      filtersEl.classList.add('loading');
+    }
+    const breedsListEl = document.getElementById('breedsList');
+    if (breedsListEl) {
+      breedsListEl.classList.add('loading');
+    }
+  };
+
+  this.removeLoaders = () => {
+    const loaders = document.querySelectorAll('.loading');
+    loaders.forEach(l => {
+      l.classList.remove('loading');
+    });
+  };
+
   const init = async () => {
     this.addButtonFuntionality();
     try {
@@ -446,6 +467,7 @@ function BreedList() {
       this.breeds = breeds;
       this.allBreeds = breeds;
       this.addBreedsToUI(this.breeds);
+      this.removeLoaders();
 
     } catch (error) {
       console.error(error);

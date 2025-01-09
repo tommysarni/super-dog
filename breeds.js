@@ -476,11 +476,14 @@ function BreedList() {
     const listViewBtn = document.querySelector('button.viewSelect.listView');
     const galleryViewBtn = document.querySelector('button.viewSelect.galleryView');
     if (listViewBtn && galleryViewBtn) {
-      const handleViewChange = () => {
+      const handleViewChange = (listBtn, galleryBtn) => {
+        listBtn.classList.toggle('hidden');
+        galleryBtn.classList.toggle('hidden');
         const breedsListEl = document.getElementById('breedsList');
         if (breedsListEl) {
           breedsListEl.classList.toggle('gallery');
         }
+
       };
 
       listViewBtn.addEventListener('click', () => {

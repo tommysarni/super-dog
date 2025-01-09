@@ -360,6 +360,12 @@ div.submit {
   color: var(--dog-white);
 }
 
+/* Highlight Breed List Item when search box is focused */
+#site-search:focus~div.listContainer>ul#breedsList>.breed.highlighted {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
 .breed>a {
   width: 100%;
   height: 100%;

@@ -1,4 +1,5 @@
 function BreedList() {
+  this.focus = 0;
   this.filters = {
     group: '',
     height: '',
@@ -92,11 +93,12 @@ function BreedList() {
     const loc = document.getElementById('breedsList');
     if (loc && breeds.length !== undefined) {
       loc.replaceChildren();
-      breeds.forEach((b) => {
+      breeds.forEach((b, idx) => {
         const { breed, slug, group } = b || {};
         if (!breed || !slug) return;
         const li = document.createElement('li');
         li.classList.add('breed');
+        if (idx === this.focus) li.classList.add('highlighted');
         const a = document.createElement('a');
         a.href = '/dog.html?breed=' + slug;
         const p_breed = document.createElement('p');
@@ -110,6 +112,11 @@ function BreedList() {
         loc.appendChild(li);
       });
     }
+  };
+
+  this.getNumberOfShowBreeds = () => {
+    const breeds = document.querySelectorAll('.breed');
+    return breeds.length;
   };
 
   this.addButtonFuntionality = () => {
@@ -243,8 +250,46 @@ function BreedList() {
       searchInput.value = '';
       searchInput.addEventListener('input', () => {
         const searchVal = searchInput.value;
-        const filteredBreeds = searchBreeds(searchVal, this.allBreeds);
+        const searchedFilteredBreeds = searchBreeds(searchVal, this.breeds);
+        const filteredSlugs = searchedFilteredBreeds.map(({ slug }) => slug);
+        let searchedAllBreeds = searchBreeds(searchVal, this.allBreeds);
+        searchedAllBreeds = searchedAllBreeds.filter(b => !filteredSlugs.includes(b.slug)
+        );
+        const filteredBreeds = [...searchedFilteredBreeds, ...searchedAllBreeds];
+
         this.addBreedsToUI(!searchVal ? this.breeds : filteredBreeds);
+      });
+
+      const updateHighlightedBreed = (focusIndex) => {
+        const breeds = document.querySelectorAll('#breedsList>.breed');
+        if (breeds.length) {
+          breeds.forEach((b, idx) => {
+            if (b.classList.contains('highlighted')) b.classList.remove('highlighted');
+            if (idx === focusIndex) b.classList.add('highlighted');
+          });
+        }
+      };
+
+      searchInput.addEventListener('keydown', (e) => {
+        const breedLength = this.getNumberOfShowBreeds();
+        if (e.key === "Enter") {
+          const selected = document.querySelector('#breedsList>.breed.highlighted>a');
+          if (selected) selected.click();
+
+        }
+        if (e.key === "ArrowDown") {
+          this.focus = (this.focus + 1) % breedLength;
+          updateHighlightedBreed(this.focus);
+        }
+        if (e.key === "ArrowUp") {
+          this.focus = this.focus === 0 ? breedLength - 1 : this.focus - 1;
+          updateHighlightedBreed(this.focus);
+        }
+      });
+
+      searchInput.addEventListener('blur', () => {
+        this.focus = 0;
+        updateHighlightedBreed(this.focus);
       });
     }
 

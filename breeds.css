@@ -323,6 +323,10 @@ select {
   gap: 10px;
 }
 
+.inputSelect>select {
+  width: 100%;
+}
+
 .stats {
   display: grid;
   grid-template-columns: 1fr;
@@ -524,5 +528,12 @@ footer {
 
   #breedsList.gallery>.breed>a>.anchorContainer {
     grid-template-rows: 1fr 3fr;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  body {
+    margin: 0 15%;
   }
 }

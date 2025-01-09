@@ -280,15 +280,22 @@ button.expand {
   height: 38px;
 }
 
+button.progress.selected {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
 .selects {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
+  margin-bottom: 20px;
 }
 
 .inputSelect {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .stats {
@@ -306,6 +313,17 @@ button.expand {
   min-width: 30px;
   min-height: 30px;
   border: solid 1px black;
+}
+
+div.submit {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+
+.apply {
+  padding: 10px;
+
 }
 
 .breed {

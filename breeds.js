@@ -1,4 +1,23 @@
 function BreedList() {
+  this.filters = {
+    group: '',
+    height: '',
+    weight: '',
+    energy: [],
+    exercise: [],
+    goodWithChildren: [],
+    playfullness: [],
+    affection: [],
+    dogFriendliness: [],
+    petFriendliness: [],
+    strangerFriendliness: [],
+    trainingEase: [],
+    watchdog: [],
+    protection: [],
+    grooming: [],
+    coldTolerance: [],
+    heatTolerance: [],
+  };
 
   function isTokenExpired(token) {
     if (!token) return true;
@@ -236,6 +255,91 @@ function BreedList() {
         if (filtersEl) {
           filtersEl.classList.toggle('expanded');
         }
+      });
+    }
+
+    const updateStatFilter = (type, num) => {
+      let selectedFilter = this.filters[type];
+
+      if (selectedFilter !== undefined) {
+        if (selectedFilter.length === 1) {
+          if (selectedFilter[0] === num) {
+            this.filters[type] = [];
+            return this.filters[type];
+          } else if (selectedFilter[0] < num) {
+            this.filters[type] = [...selectedFilter, num];
+            return this.filters[type];
+          }
+        }
+        this.filters[type] = [num];
+      }
+      return this.filters[type];
+    };
+
+    const updateStatUI = (btns, indices) => {
+      let [start, end] = indices;
+      if (end === undefined) end = start;
+      btns.forEach((b, idx) => {
+        if (idx + 1 >= start && idx + 1 <= end) {
+          b.classList.toggle('selected', true);
+        } else b.classList.toggle('selected', false);
+      });
+    };
+
+    const stats = document.querySelectorAll('.stat');
+    stats.forEach(s => {
+      const btns = document.querySelectorAll(`#${s.id}>button`);
+      btns.forEach((b, idx) => {
+        b.addEventListener('click', () => {
+          const updatedFilters = updateStatFilter(s.id, idx + 1);
+          updateStatUI(btns, updatedFilters);
+        });
+      });
+    });
+
+    const setSelectedInput = (type) => (e) => {
+      const selected = this.filters[type];
+      if (selected !== undefined) {
+        const value = e.target.value;
+        this.filters[type] = value;
+      }
+    };
+
+    const groupSelect = document.getElementById('group-select');
+    if (groupSelect) {
+      groupSelect.value = '';
+      groupSelect.addEventListener('change', setSelectedInput('group'));
+    }
+    const heightSelect = document.getElementById('height-select');
+    if (heightSelect) {
+      heightSelect.value = '';
+      heightSelect.addEventListener('change', setSelectedInput('height'));
+    }
+    const weightSelect = document.getElementById('weight-select');
+    if (weightSelect) {
+      weightSelect.value = '';
+      weightSelect.addEventListener('change', setSelectedInput('weight'));
+    }
+
+    const prepFilterOptions = () => {
+      let results = {};
+
+      for (let [key, val] of Object.entries(this.filters)) {
+        if (key === 'group' || key === 'height' || key === 'weight') {
+          if (val !== '') results[key] = val;
+        } else {
+          if (val.length) {
+            results[key] = val.join('-');
+          }
+        }
+      }
+
+      return results;
+    };
+    const applyFilterBtn = document.querySelector('button.apply');
+    if (applyFilterBtn) {
+      applyFilterBtn.addEventListener('click', (e) => {
+        console.log(prepFilterOptions());
       });
     }
   };

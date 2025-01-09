@@ -272,6 +272,9 @@ button.viewSelect {
   display: none;
 }
 
+.viewSelect svg {
+  aspect-ratio: inherit;
+}
 
 svg#listView polyline {
   fill: var(--dog-white);
@@ -437,7 +440,7 @@ div.submit {
 
 #breedsList.gallery>.breed>a>.anchorContainer {
   display: grid;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: min-content 4fr;
   gap: 10px;
   width: 100%;
   height: 100%;
@@ -574,7 +577,7 @@ footer {
   }
 
   #breedsList.gallery>.breed>a>.anchorContainer {
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: min-content 3fr;
   }
 }
 

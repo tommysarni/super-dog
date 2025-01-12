@@ -602,6 +602,13 @@ footer {
 
 }
 
+@media (min-width: 1200px) {
+
+  body {
+    margin: 0 15%;
+  }
+}
+
 @media (prefers-reduced-motion) {
   :root {
     --loading-animation-length: 2.5s;

@@ -325,11 +325,11 @@ function BreedList() {
           if (selected) selected.click();
 
         }
-        if (e.key === "ArrowDown") {
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") {
           this.focus = (this.focus + 1) % breedLength;
           updateHighlightedBreed(this.focus);
         }
-        if (e.key === "ArrowUp") {
+        if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
           this.focus = this.focus === 0 ? breedLength - 1 : this.focus - 1;
           updateHighlightedBreed(this.focus);
         }

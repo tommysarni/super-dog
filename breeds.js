@@ -352,8 +352,8 @@ function BreedList() {
         }
       });
 
-      expandBtn.addEventListener('focus', () => {
-        if (filtersEl) {
+      expandBtn.addEventListener('focus', (e) => {
+        if (filtersEl && e.relatedTarget) {
           if (!filtersEl.classList.contains('expanded')) expandBtn.click();
         }
       });

@@ -343,12 +343,18 @@ function BreedList() {
 
     const expandBtn = document.querySelector('button.expand');
     if (expandBtn) {
+      const filtersEl = document.querySelector('div.filters');
       expandBtn.addEventListener('click', () => {
-        const filtersEl = document.querySelector('div.filters');
         if (filtersEl) {
           filtersEl.classList.toggle('expanded');
           const expandBtn = document.querySelector('button.expand');
           expandBtn.textContent = filtersEl.classList.contains('expanded') ? '-' : '+';
+        }
+      });
+
+      expandBtn.addEventListener('focus', () => {
+        if (filtersEl) {
+          if (!filtersEl.classList.contains('expanded')) expandBtn.click();
         }
       });
     }

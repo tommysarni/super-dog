@@ -42,8 +42,9 @@ header {
 }
 
 #svg_logo_menu {
-  left: calc(10% - 10px);
-  top: 13px;
+  top: -11px;
+  left: -8px;
+  position: relative;
 }
 
 .svg_logo {
@@ -56,6 +57,15 @@ header {
 .modal>svg:nth-child(1) {
   left: calc(10% - 10px);
   top: 13px;
+}
+
+.modal>a {
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  left: calc(10% - 10px);
+  top: 13px;
+  margin: 10px;
 }
 
 /* SVG - LOGO */
@@ -590,6 +600,13 @@ footer {
     margin: 0;
   }
 
+}
+
+@media (min-width: 1200px) {
+
+  body {
+    margin: 0 15%;
+  }
 }
 
 @media (prefers-reduced-motion) {

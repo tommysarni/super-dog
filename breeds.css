@@ -1,0 +1,599 @@
+:root {
+  --dog-yellow: #FFF700;
+  --dog-blue: #87ceeb;
+  --dog-green: #98fb98;
+  --dog-orange: #FF7F50;
+  --dog-white: #ffffff;
+  --dog-grey: #898989;
+  --dog-pink: #E5D0E3;
+  --dog-dark: #1C3144;
+  --text-scroll-length: 20s;
+  --loading-animation-length: 1.5s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 5%;
+  height: 100vh;
+  background: var(--dog-blue);
+}
+
+main {
+  min-height: 95vh;
+  height: min-content;
+}
+
+h1 {
+  z-index: 5;
+  font-size: 25px;
+}
+
+/* HEADER */
+header {
+  height: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#svg_logo_menu {
+  top: -11px;
+  left: -8px;
+  position: relative;
+}
+
+.svg_logo {
+  position: absolute;
+  top: 10%;
+  width: 65px;
+  left: 0%;
+}
+
+.modal>svg:nth-child(1) {
+  left: calc(10% - 10px);
+  top: 13px;
+}
+
+.modal>a {
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  left: calc(10% - 10px);
+  top: 13px;
+  margin: 10px;
+}
+
+/* SVG - LOGO */
+.container-rect {
+  fill: transparent;
+}
+
+.bg-rect {
+  stroke-width: 2pt;
+  stroke-miterlimit: 10;
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+}
+
+.nose:hover {
+  stroke: var(--dog-white);
+  fill: var(--dog-dark);
+}
+
+.ear,
+.nose {
+  stroke: var(--dog-white);
+  stroke-miterlimit: 10;
+}
+
+
+
+nav ul.links {
+  display: none;
+}
+
+ul.links>li {
+  list-style-type: none;
+}
+
+.hamburger {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  right: 0;
+  top: 10%;
+  padding: 10px;
+}
+
+.hamburger>img {
+  padding: 10px;
+}
+
+.modal {
+  display: grid;
+  position: absolute;
+  top: -55vh;
+  left: 0;
+  background-color: var(--dog-white);
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px 7px 9px var(--dog-grey);
+  transition: top .5s ease;
+}
+
+.modalEscape {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 13px;
+  right: calc(10% - 10px);
+}
+
+.modalEscape:hover {
+  cursor: pointer;
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+.modalLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px var(--dog-grey);
+  border-radius: 10px;
+  margin: 10px;
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+  border-color: var(--dog-dark);
+}
+
+.button:active {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+}
+
+.modalLinks>li {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalLinks>li:hover {
+  cursor: pointer;
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+.modalLinks>li>a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* BREED LIST */
+h1 {
+  margin: 20px 0;
+}
+
+input[type="search"] {
+  /* For Safari */
+  appearance: none;
+}
+
+#site-search {
+  width: 100%;
+  height: 50px;
+  border: none;
+  padding: 5px;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+div.filters {
+  padding: 0 12px;
+  margin-bottom: 10px;
+  max-height: 65px;
+  overflow: hidden;
+  transition: max-height 0.3s linear;
+  background-color: var(--dog-white);
+}
+
+div.filters.expanded {
+  max-height: 1200px;
+}
+
+div.filters.expanded>div.filterMenu>div.filterHeader>button.apply {
+  display: block;
+}
+
+div.filterHeader {
+  display: flex;
+}
+
+div.filterHeader>button.apply {
+  display: none;
+}
+
+div.filterMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+div.filterMenu>button {
+  padding: 10px;
+}
+
+button.expand,
+button.viewSelect {
+  aspect-ratio: 1/1;
+  width: 40px;
+}
+
+button.expand {
+  font-weight: bold;
+}
+
+button.viewSelect {
+  padding: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.viewSelect svg {
+  aspect-ratio: inherit;
+}
+
+svg#listView polyline {
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 10px;
+}
+
+.viewSelect:hover svg#listView polyline {
+  fill: var(--dog-dark);
+  stroke: var(--dog-white);
+}
+
+.viewSelect:hover svg#listView circle {
+  fill: var(--dog-white);
+}
+
+.viewSelect:active svg#listView polyline {
+  fill: var(--dog-white);
+  stroke: var(--dog-dark);
+}
+
+.viewSelect:active svg#listView circle {
+  fill: var(--dog-dark);
+}
+
+
+svg#galleryView rect {
+  fill: var(--dog-dark);
+}
+
+.viewSelect:hover svg#galleryView rect {
+  fill: var(--dog-white);
+}
+
+.viewSelect:active svg#galleryView rect {
+  fill: var(--dog-dark);
+}
+
+button.progress.selected {
+  background-color: var(--dog-blue);
+  color: var(--dog-white);
+}
+
+button.progress.selected:hover {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+}
+
+select {
+  appearance: none;
+  background-color: var(--dog-white);
+  border: 1px solid var(--dog-grey);
+  padding: 2px 5px;
+}
+
+.selects {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.inputSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputSelect>select {
+  width: 100%;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.stat {
+  display: flex;
+  margin-top: 3px;
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.statClear {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+  padding: 1px 2px;
+  border: 1px var(--dog-dark) solid;
+  cursor: pointer;
+}
+
+button:disabled {
+  color: var(--dog-grey);
+  border-color: var(--dog-grey);
+}
+
+button.statClear:not(:disabled):hover {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+button.statClear:not(:disabled):active {
+  background-color: var(--dog-white);
+  color: var(--dog-dark);
+}
+
+.progress {
+  width: 100%;
+  min-width: 30px;
+  min-height: 30px;
+  border: solid 1px var(--dog-blue);
+  background-color: var(--dog-white);
+  cursor: pointer;
+}
+
+.progress:hover {
+  color: var(--dog-white);
+  background-color: var(--dog-blue);
+}
+
+div.submit {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+
+.apply {
+  padding: 10px;
+  font-weight: bold;
+}
+
+#breedsList.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+
+.breed {
+  background-color: var(--dog-white);
+  border-bottom: 1px solid var(--dog-grey);
+  font-size: 20px;
+  list-style-type: none;
+}
+
+.breed:not(.error):hover {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+.breed.error {
+  padding: 10px;
+  background-color: var(--dog-orange);
+  color: var(--dog-dark);
+  font-weight: bold;
+}
+
+.sectionTitleContainer {
+  margin: 10px 0;
+  background: var(--dog-pink);
+  padding: 10px;
+}
+
+#breedsList.gallery .sectionTitleContainer {
+  margin: 0;
+}
+
+#breedsList.gallery>.breed>a>.anchorContainer {
+  display: grid;
+  grid-template-rows: min-content 4fr;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+#breedsList:not(.gallery)>.breed>a>.anchorContainer>.previewImage {
+  display: none;
+}
+
+#breedsList.gallery>.breed {
+  display: none;
+}
+
+#breedsList.gallery>.breed.visible {
+  display: list-item;
+}
+
+
+#breedsList:not(.gallery)~button#showMoreBtn {
+  display: none !important;
+}
+
+button#showMoreBtn {
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+@property --img-load-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -10%;
+}
+
+@property --img-load-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 110%;
+}
+
+.loading,
+#breedsList.loading>.breed {
+  background: conic-gradient(from 45deg at var(--img-load-x) var(--img-load-y), var(--dog-white), var(--dog-blue), var(--dog-white));
+  animation: loading-diagonal 3s linear infinite alternate;
+}
+
+@keyframes loading-diagonal {
+  0% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+
+  50% {
+    --img-load-x: 110%;
+    --img-load-y: -10%;
+  }
+
+  100% {
+    --img-load-x: -10%;
+    --img-load-y: 110%;
+  }
+}
+
+/* Highlight Breed List Item when search box is focused */
+#site-search:focus~div.listContainer>ul#breedsList>.breed.highlighted {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+}
+
+.breed>a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  text-decoration: none;
+  color: inherit;
+  padding: 20px;
+}
+
+img.previewImage {
+  width: 100%;
+  height: 100%;
+  background-color: var(--dog-grey);
+  object-fit: cover;
+}
+
+p.group {
+  font-size: 17px;
+}
+
+footer {
+  height: 100px;
+}
+
+@media (min-width: 600px) {
+
+  body {
+    margin: 0 10%;
+  }
+
+  /* HEADER */
+  nav {
+    position: relative;
+    top: 50%;
+  }
+
+  nav ul.links {
+    display: flex;
+    gap: 5px;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  .inputSelect {
+    flex-direction: row;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div.filters.expanded {
+    max-height: 800px;
+  }
+
+  #breedsList.gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #breedsList.gallery>.breed>a>.anchorContainer {
+    grid-template-rows: min-content 3fr;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  body {
+    margin: 0 15%;
+  }
+}

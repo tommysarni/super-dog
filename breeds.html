@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Dog</title>
+  <link rel="stylesheet" href="breeds.css">
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <nav class="modal">
+    <a href="">
+      <svg id="svg_logo_menu" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <button class="modalEscape button">X</button>
+    <div class="spacer"></div>
+    <ul class="modalLinks">
+      <li class="button"><a href="">Home</a></li>
+      <li class="button"><a href="">Quiz</a></li>
+      <li class="button"><a href="">Breeds</a></li>
+      <li class="button"><a href="">FAQs</a></li>
+    </ul>
+  </nav>
+  <header>
+    <a href="">
+      <svg id="svg_logo" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <nav>
+      <button class="hamburger button">
+        <img rel="icon" src="/hamburger_menu.svg" height="50px" width="50px" />
+      </button>
+      <ul class="links">
+        <li><a href="">Home</a></li>
+        <li><a href="">Quiz</a></li>
+        <li><a href="">Breeds</a></li>
+        <li><a href="">FAQs</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1 class="loading">Dog Breed Search</h1>
+    <input type="search" id="site-search" name="q" placeholder="Search for a breed here!" autocomplete="off" />
+    <div class="filters">
+      <div class="filterMenu">
+        <h2>Filters</h2>
+        <div class="filterHeader">
+          <button class="button apply">Apply Filters</button>
+          <button class="button viewSelect listView hidden">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="listView" data-name="listView" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.35 62.11">
+              <g id="ListGroup">
+                <g>
+                  <polyline class="cls-1" points="24.83 5 96.35 5 24.83 5" />
+                  <polyline class="cls-1" points="24.83 57.11 96.35 57.11 24.83 57.11" />
+                  <polyline class="cls-1" points="24.83 31.06 96.35 31.06 24.83 31.06" />
+                  <circle cx="4.83" cy="5" r="4.83" />
+                  <circle cx="4.83" cy="31.06" r="4.83" />
+                  <circle cx="4.83" cy="57.11" r="4.83" />
+                </g>
+              </g>
+            </svg>
+          </button>
+          <button class="button viewSelect galleryView">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="galleryView" data-name="galleryView" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.96 82.34">
+              <g id="galleryGroup" data-name="galleryGroup">
+                <g>
+                  <rect width="23.51" height="23.51" />
+                  <rect x="32.22" width="23.51" height="23.51" />
+                  <rect x="64.45" width="23.51" height="23.51" />
+                  <rect y="29.41" width="23.51" height="23.51" />
+                  <rect x="32.22" y="29.41" width="23.51" height="23.51" />
+                  <rect x="64.45" y="29.41" width="23.51" height="23.51" />
+                  <rect y="58.83" width="23.51" height="23.51" />
+                  <rect x="32.22" y="58.83" width="23.51" height="23.51" />
+                  <rect x="64.45" y="58.83" width="23.51" height="23.51" />
+                </g>
+              </g>
+            </svg>
+          </button>
+          <button class="button expand">+</button>
+        </div>
+      </div>
+      <div class="filterOptions">
+        <div class="selects">
+          <div class="inputSelect">
+            <label for="group-select">Group:</label>
+            <select name="group" id="group-select">
+              <option value="">-----</option>
+              <option value="sporting">Sporting</option>
+              <option value="hound">Hound</option>
+              <option value="working">Working</option>
+              <option value="terrier">Terrier</option>
+              <option value="toy">Toy</option>
+              <option value="non-sporting">Non-Sporting</option>
+            </select>
+          </div>
+          <div class="inputSelect">
+            <label for="height-select">Height:</label>
+            <select name="height" id="height-select">
+              <option value="">-----</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+          <div class="inputSelect">
+            <label for="weight-select">Weight:</label>
+            <select name="weight" id="weight-select">
+              <option value="">-----</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="goodWithChildren">Good With Children</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="goodWithChildren">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="energy">Energy</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="energy">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="exercise">Exercise</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="exercise">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="playfullness">Playfullness</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="playfullness">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="affection">Affection</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="affection">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="dogFriendliness">Friendliness Toward Dogs</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="dogFriendliness">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="petFriendliness">Friendliness Toward Pets</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="petFriendliness">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="strangerFriendliness">Friendliness Toward Strangers</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="strangerFriendliness">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="trainingEase">Ease of Training</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="trainingEase">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="watchdog">Watchdog</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="watchdog">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="protection">Protection</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="protection">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="grooming">Grooming Requirements</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="grooming">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="coldTolerance">Cold Tolerance</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="coldTolerance">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+          <div class="statContainer">
+            <div class="statHeader">
+              <label class="statLabel" for="heatTolerance">Heat Tolerance</label>
+              <button class="statClear" disabled>clear</button>
+            </div>
+            <div class="stat" id="heatTolerance">
+              <button class="progress">1</button>
+              <button class="progress">2</button>
+              <button class="progress">3</button>
+              <button class="progress">4</button>
+              <button class="progress">5</button>
+            </div>
+          </div>
+        </div>
+        <div class="submit">
+          <button class="button apply">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+    <div class="listContainer">
+      <ul id="breedsList">
+        <li class="breed loading"><a>Great Floofer</a></li>
+        <li class="breed loading"><a>Sock Retriever</a></li>
+        <li class="breed loading"><a>Bed Hogger</a></li>
+      </ul>
+      <button id="showMoreBtn" class="button">Show More</button>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="breeds.js"></script>
+</body>
+
+</html>

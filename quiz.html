@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Dog</title>
+  <link rel="stylesheet" href="quiz.css">
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <nav class="modal">
+    <a href="">
+      <svg id="svg_logo_menu" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <button class="modalEscape button">X</button>
+    <div class="spacer"></div>
+    <ul class="modalLinks">
+      <li class="button"><a href="">Home</a></li>
+      <li class="button"><a href="">Quiz</a></li>
+      <li class="button"><a href="">Breeds</a></li>
+      <li class="button"><a href="">FAQs</a></li>
+    </ul>
+  </nav>
+  <header>
+    <a href="">
+      <svg id="svg_logo" class="svg_logo button" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 85.56 85.56">
+        <g id="svg_logo_group">
+          <g>
+            <rect class="container-rect" width="85.56" height="85.56" />
+            <g>
+              <rect class="bg-rect" x="23.45" y="21.57" width="37.59" height="46.95" />
+              <path class="ear left_ear"
+                d="M16.41,3.76s3.95,41.19,0,54.7c0,0,17.8,1.98,20.76-9.56,2.97-11.53-3.24-18.76-3.24-18.76L16.41,3.76Z" />
+              <path class="ear right_ear"
+                d="M69.15,82.3s-3.95-41.19,0-54.7c0,0-17.8-1.98-20.76,9.56-2.97,11.53,2.51,18.75,2.51,18.75l18.25,26.4Z" />
+              <path class="nose"
+                d="M40.95,58.56s-4.64.52-5.41-2.49c-.77-3.01.84-4.89.84-4.89h11.72s1.62,1.89.84,4.89-5.41,2.49-5.41,2.49h-2.58Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+    <nav>
+      <button class="hamburger button">
+        <img rel="icon" src="/hamburger_menu.svg" height="50px" width="50px" />
+      </button>
+      <ul class="links">
+        <li><a href="/">Home</a></li>
+        <li><a href="">Quiz</a></li>
+        <li><a href="/breeds.html">Breeds</a></li>
+        <li><a href="">FAQs</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Quizzes</h1>
+    <section id="vibe-check" class="quiz">
+      <div class="start">
+        <div class="image-container">
+          <div>
+            <h2>Vibe Check</h2>
+            <p>Discover what breed matches your style</p>
+            <button class="button">Start!</button>
+          </div>
+          <img src="https://doggo-api-super-quiz.s3.us-east-1.amazonaws.com/header.jpg" alt="Dog" loading="eager" />
+        </div>
+      </div>
+      <div class="gameBlock">
+
+        <div class="loadingBlock">
+          <h2 class="loading">Gathering Results</h2>
+          <div class="track">
+          </div>
+        </div>
+
+        <h2>Select one!</h2>
+        <div class="game">
+          <button class="choice-container">
+            <h3>A</h3>
+            <img class="foreground" src="" alt="">
+            <img class="background" src="" alt="">
+
+          </button>
+          <button class="choice-container">
+            <h3>B</h3>
+            <img class="foreground" src="" alt="">
+            <img class="background" src="" alt="">
+          </button>
+          <button class="choice-container">
+            <h3>C</h3>
+            <img class="foreground" src="" alt="">
+            <img class="background" src="" alt="">
+          </button>
+
+        </div>
+      </div>
+      
+      <div class="resultsBlock">
+        <h2>You matched with: <span class="breed">Dog</span></h2>
+        <div class="results">
+          <div class="match">
+            <a class="chosen">
+              <img src="" alt="">
+            </a>
+            <div class="analytics">
+              <div class="stat">
+                <h4>Affection</h4>
+                <h3>Standard</h3>
+                <p class="rating">4.0</p>
+              </div>
+              <div class="stat">
+                <h4>Beauty</h4>
+                <h3>Standard</h3>
+                <p class="rating">4.0</p>
+              </div>
+              <div class="stat">
+                <h4>Playfullness</h4>
+                <h3>Standard</h3>
+                <p class="rating">4.0</p>
+              </div>
+            </div>
+          </div>
+          <div class="others">
+            <div class="other">
+              <p>Boykin Spaniel</p>
+              <div class="">
+                <img src="" alt="">
+              </div>
+            </div>
+            <div class="other">
+              <p>Cocker Spaniel</p>
+              <div class="">
+                <img src="" alt="">
+              </div>
+            </div>
+            <div class="other">
+              <p>Golden Retriever</p>
+              <div class="">
+                <img src="" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+  <footer></footer>
+  <script src="quiz.js"></script>
+</body>
+
+</html>

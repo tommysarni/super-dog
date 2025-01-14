@@ -222,6 +222,10 @@ img {
   left: 1.5rem;
 }
 
+.start {
+  position: relative;
+}
+
 .start img {
   min-height: 50vh;
 }
@@ -366,13 +370,22 @@ footer {
 }
 
 .loadingBlock {
-  /* display: none; */
   position: absolute;
-  top: 20px;
   width: 100%;
   z-index: 5;
   padding: 20px;
+  bottom: 20px;
+  left: 0px;
 }
+/* 
+.gameBlock .loadingBlock {
+  top: 20px;
+}
+
+.start .loadingBlock {
+  bottom: 20px;
+  left: 0px;
+} */
 
 
 @property --img-load-x {

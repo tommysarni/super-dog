@@ -199,31 +199,40 @@ function Quiz(quiz, el) {
     return Object.keys(this.categories[category])
   }
 
-  const prefetchImages = async () => {
+  const prefetchImages = async (categories) => {
 
-    const categories = this.getCategories()
     const options = categories.map((category) => this.getOptions(category)).flat();
 
-    const promises = options.map((option) => {
-      const url = `https://doggo-api-super-quiz.s3.us-east-1.amazonaws.com/${option}.jpg`;
+    const loadImage = (url) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = url;
         img.onload = () => {
           this.imageCache[url] = img;
           resolve(url);
-        }
+        };
         img.onerror = () => reject(`Failed to load: ${url}`);
       });
-    });
+    };
 
+    const loadImagesInOrder = async () => {
+      for (const option of options) {
+        const url = `https://doggo-api-super-quiz.s3.us-east-1.amazonaws.com/${option}.jpg`;
+        try {
+          await loadImage(url);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
     try {
-      const loadedImages = await Promise.all(promises);
+      await loadImagesInOrder();
     } catch (error) {
-      console.error(error);
+      console.error("Error loading images:", error);
     }
-  }
+  };
+
 
   const setAnswer = (idx) => {
     const categories = this.getCategories()
@@ -415,25 +424,25 @@ function Quiz(quiz, el) {
   }
 
   this.updateLoaders = (force = true) => {
-    const loadingBlock = this.element.querySelector('.loadingBlock')
+    const loadingBlock = this.element.querySelector('.loadingBlock');
     if (loadingBlock) {
-      loadingBlock.style.display = force ? 'block' : 'none'
+      loadingBlock.style.display = force ? 'block' : 'none';
     }
 
-    const gameEl = this.element.querySelector('.game')
+    const gameEl = this.element.querySelector('.game');
     if (gameEl) {
-      gameEl.style.opacity = '50%'
+      gameEl.style.opacity = force ? '50%' : '100%';
     }
   }
 
   this.end = async () => {
-    this.updateLoaders()
-    const data = await makeQuizAPICall()
-    this.updateLoaders(false)
+    this.updateLoaders();
+    const data = await makeQuizAPICall();
+    this.updateLoaders(false);
     this.data = data;
-    const gameBlockEl = this.element.querySelector('.gameBlock')
+    const gameBlockEl = this.element.querySelector('.gameBlock');
     if (gameBlockEl) {
-      gameBlockEl.style.display = 'none'
+      gameBlockEl.style.display = 'none';
     }
 
     updateResultUI()
@@ -514,7 +523,18 @@ function Quiz(quiz, el) {
 
 
   const init = async () => {
-    await prefetchImages(this.categories)
+
+    const categories = this.getCategories()
+
+    this.updateLoaders(true)
+    await prefetchImages(categories.slice(0, 2));
+    
+    const startEl = this.element.querySelector('.start');
+    if (startEl) startEl.style.display = 'none';
+    
+    this.updateLoaders(false)
+    prefetchImages(categories.slice(2));
+
     this.start();
   }
 
@@ -530,10 +550,9 @@ function Selection() {
     const quizzes = document.querySelectorAll('.quiz');
     quizzes.forEach(quiz => {
       const button = quiz.querySelector('button');
-      const startEl = quiz.querySelector('.start');
+
       button.addEventListener('click', async (e) => {
         const q = new Quiz(quizDict[quiz.id], quiz);
-        startEl.style.display = 'none';
       });
     });
 

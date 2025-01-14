@@ -220,7 +220,6 @@ function Quiz(quiz, el) {
 
     try {
       const loadedImages = await Promise.all(promises);
-      console.log('All images loaded successfully:', Object.keys(this.imageCache));
     } catch (error) {
       console.error(error);
     }
@@ -299,9 +298,6 @@ function Quiz(quiz, el) {
     backgroundImageElements.forEach(async (backgroundImageEl, idx) => {
       const backgroundType = backgroundOptions[idx]
       setImage(backgroundImageEl, backgroundType)
-        .then((backgroundMessage) => {
-          console.log(backgroundMessage);
-        })
         .catch((error) => {
           console.error('Error loading background image:', error);
         });
@@ -311,7 +307,6 @@ function Quiz(quiz, el) {
 
 
   this.start = () => {
-    console.log('started')
     const gameBlockEl = this.element.querySelector('.gameBlock')
     if (gameBlockEl) {
       gameBlockEl.style.display = 'block'

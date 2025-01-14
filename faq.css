@@ -221,6 +221,18 @@ ul.links>li {
 }
 
 
+footer {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+  height: 100px;
+  padding: 20px 20px;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--dog-white);
+}
+
 
 @media (min-width: 600px) {
 

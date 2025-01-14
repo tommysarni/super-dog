@@ -277,6 +277,7 @@ div.game {
 .resultsBlock {
   display: none;
   position: relative;
+  margin-bottom: 10px;
 }
 
 .results {
@@ -297,7 +298,16 @@ div.game {
   margin-top: 15px;
 }
 
+.statText {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  text-align: center;
+}
+
 .rating {
+  position: absolute;
+  bottom: 0;
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -326,7 +336,7 @@ h4 {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 0%;
+  border-radius: 15px;
   background: var(--dog-white);
   aspect-ratio: 1/1;
   box-shadow: 0px 3px 4px 1px var(--dog-dark);
@@ -402,6 +412,24 @@ footer {
   animation: loading-horizontal 2s linear infinite alternate;
 }
 
+footer {
+  background-color: var(--dog-dark);
+  color: var(--dog-white);
+  height: 100px;
+  padding: 20px 20px;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--dog-white);
+}
+
+footer h3 {
+  padding: 0;
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
 
 @media (min-width: 600px) {
 
@@ -444,13 +472,13 @@ footer {
   }
 
   h3 {
-    font-size: 24px;
-    letter-spacing: -1px;
+    font-size: 18px;
+    letter-spacing: 0px;
   }
 
   h4 {
-    font-size: 14px;
-    letter-spacing: 3px;
+    font-size: 12px;
+    letter-spacing: 2px;
   }
 
   .rating {
@@ -462,9 +490,32 @@ footer {
 
 }
 
+@media (min-width: 800px) {
+
+  h3 {
+    font-size: 24px;
+    letter-spacing: -1px;
+  }
+
+  h4 {
+    font-size: 14px;
+    letter-spacing: 3px;
+  }
+}
+
 @media (min-width: 1200px) {
 
   body {
     margin: 0 20%;
+  }
+
+  h3 {
+    font-size: 24px;
+    letter-spacing: -1px;
+  }
+
+  h4 {
+    font-size: 14px;
+    letter-spacing: 3px;
   }
 }

@@ -217,7 +217,7 @@ function Quiz(quiz, el) {
 
     const loadImagesInOrder = async () => {
       for (const option of options) {
-        const url = `https://doggo-api-super-quiz.s3.us-east-1.amazonaws.com/${option}.jpg`;
+        const url = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-quiz/${option}.jpg`;
         try {
           await loadImage(url);
         } catch (error) {
@@ -258,7 +258,7 @@ function Quiz(quiz, el) {
   }
 
   const setImage = async (el, type) => {
-    const url = `https://doggo-api-super-quiz.s3.us-east-1.amazonaws.com/${type}.jpg`;
+    const url = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-quiz/${type}.jpg`;
 
     return new Promise((resolve, reject) => {
       if (this.imageCache[url]) {
@@ -358,7 +358,7 @@ function Quiz(quiz, el) {
            <a href="/dog.html?breed=${slug}">
               <p>${breed}</p>
               <div class="">
-                <img src="https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${slug}.jpg" alt="${breed}">
+                <img src="https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-dog-bucket/${slug}.jpg" alt="${breed}">
               </div>
             </a>
             `.trim()
@@ -387,7 +387,7 @@ function Quiz(quiz, el) {
 
     const imgEl = this.element.querySelector('.chosen>img');
     if (imgEl) {
-      imgEl.src = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${selected.slug}.jpg`
+      imgEl.src = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-dog-bucket/${selected.slug}.jpg`
       imgEl.alt = selected.breed
     }
 
@@ -528,10 +528,10 @@ function Quiz(quiz, el) {
 
     this.updateLoaders(true)
     await prefetchImages(categories.slice(0, 2));
-    
+
     const startEl = this.element.querySelector('.start');
     if (startEl) startEl.style.display = 'none';
-    
+
     this.updateLoaders(false)
     prefetchImages(categories.slice(2));
 

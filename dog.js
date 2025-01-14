@@ -91,7 +91,7 @@ function Dog(id) {
     // IMAGE
     const imgEl = document.querySelector('.imageContainer img');
     if (imgEl) {
-      imgEl.src = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
+      imgEl.src = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-dog-bucket/${this.id}.jpg`;
       imgEl.alt = data.breed;
     }
 
@@ -189,7 +189,7 @@ function Dog(id) {
       ccLink = json.ccLink;
       loc = json.loc;
     } else {
-      const URL = `https://doggo-api-super-dog-bucket.s3.us-east-1.amazonaws.com/${this.id}.jpg`;
+      const URL = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-dog-bucket/${this.id}.jpg`;
       try {
         const response = await fetch(URL, {
           method: 'HEAD',

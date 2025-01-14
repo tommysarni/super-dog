@@ -130,7 +130,7 @@ function BreedList() {
 
           const img = document.createElement('img');
           img.classList.add('previewImage');
-          img.src = `https://doggo-api.s3.us-east-1.amazonaws.com/doggo-api-super-dog-bucket/${slug}.jpg`;
+          img.src = `https://d138t63mg6zpwf.cloudfront.net/doggo-api-super-dog-bucket/${slug}.jpg`;
           img.alt = breed;
           img.loading = 'lazy';
 

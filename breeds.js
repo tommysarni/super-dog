@@ -353,7 +353,7 @@ function BreedList() {
       });
 
       expandBtn.addEventListener('focus', (e) => {
-        if (filtersEl && e.relatedTarget) {
+        if (filtersEl && e.relatedTarget && e.relatedTarget.id !== 'site-search') {
           if (!filtersEl.classList.contains('expanded')) expandBtn.click();
         }
       });

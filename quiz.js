@@ -330,9 +330,11 @@ function Quiz(quiz, el) {
     const statDiv = document.createElement('div')
     statDiv.classList.add('stat')
     statDiv.innerHTML = `
+          <div class="statText">
+            <h4>${text}</h4>
+            <h3>${rank}</h3>
+          </div>
 
-          <h4>${text}</h4>
-          <h3>${rank}</h3>
           <p class="rating">${breedVal.toFixed(1)}</p>
 
     `.trim()
